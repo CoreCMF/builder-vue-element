@@ -1,0 +1,27 @@
+{
+  "name": "builder-vue-iview",
+  "version": "1.0.3",
+  "description": "自动构建vue-iview页面\"",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoreCMF/builder-vue-iview.git"
+  },
+  "keywords": [
+    "vue",
+    "iview",
+    "builder"
+  ],
+  "author": "bigRcos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CoreCMF/builder-vue-iview/issues"
+  },
+  "homepage": "https://github.com/CoreCMF/builder-vue-iview#readme",
+  "devDependencies": {
+    "iview": "^2.0.0-rc.13"
+  }
+}
