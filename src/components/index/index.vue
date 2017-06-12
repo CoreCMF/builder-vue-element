@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="layout-content-main">
     builder-vue-element-main
   </div>
 </template>
@@ -21,3 +21,13 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+  .layout-content-main{
+    min-height: 300px;
+    margin: 15px;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 4px;
+    padding: 10px;
+  }
+</style>
