@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'index',
+  name: 'bve-index',
   data() {
     return {
       data: null,

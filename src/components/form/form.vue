@@ -2,15 +2,16 @@
   <div>
     <el-tabs v-if="data.tabs">
       <el-tab-pane v-for="(tab,key) in data.tabs" :key="key" :name="key.toString()" :label="tab">
-          asd
+        <bve-form-item :data="data"/>
       </el-tab-pane>
     </el-tabs>
+    <bve-form-item :data="data" v-else/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'form',
+  name: 'bve-form',
   props: {
       data: {
           type: Object,
@@ -22,7 +23,7 @@ export default {
   },
   methods: {
     initData() {
-      console.log(this.data);
+      // console.log(this.data);
     }
   }
 }

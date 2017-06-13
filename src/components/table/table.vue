@@ -6,7 +6,7 @@ table
 
 <script>
 export default {
-  name: 'table',
+  name: 'bve-table',
 
 }
 </script>
