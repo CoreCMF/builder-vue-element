@@ -1,12 +1,12 @@
 <template>
   <div>
-211211
+table
   </div>
 </template>
 
 <script>
 export default {
-  name: 'form',
+  name: 'table',
 
 }
 </script>
