@@ -1,14 +1,17 @@
 import Index from './components/index'
 import Form from './components/form'
+
 import FormItem from './components/form-item'
+import FormItemText from './components/form-item-text'
 import Table from './components/table'
 import 'element-ui/lib/theme-default/index.css'
 
 const components = [
   Index,
-  Form,
   Table,
-  FormItem
+  Form,
+  FormItem,
+  FormItemText,
 ]
 
 const install = function (Vue, opts = {}) {
