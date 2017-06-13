@@ -1,11 +1,9 @@
 <template>
-  <div class="layout-content-main">
-
-    <el-tabs type="card" v-if="data.tabs" v-model="tabIndex" @tab-click="handleTabsClick">
-      <el-tab-pane v-for="(tabs,key) in data.tabs" :key="key" :name="key.toString()" :label="tabs">
-        <bve-form v-if="data.form"/>
-      </el-tab-pane>
-    </el-tabs>
+  <div class="flex-container">
+    <div class="flex-item" v-for="(item,key) in data.items">
+      <bve-form  :data="item"  v-if="item.type == 'form'"/>
+      <bve-table :data="item"  v-if="item.type == 'table'"/>
+    </div>
   </div>
 </template>
 
@@ -14,37 +12,53 @@ export default {
   name: 'index',
   data() {
     return {
-      data: {
-        tabs:null,
-      },
-      tabIndex:null
+      data: null,
     }
   },
   created () {
-    this.initData()
+    this.getData()
   },
   watch: {
-    $route: 'initData',
+    $route: 'getData',
   },
   methods: {
-    initData() {
+    /**
+     * [getData 获取api通信数据]
+     * @return {[type]} [description]
+     */
+    getData() {
+      this.initData()
       let _this = this
       let apiUrl = this.$route.meta.apiUrl
       let thenFunction = function(Response) {
         _this.data = Response.data
       }
-      this.$store.dispatch('getData',{ apiUrl, thenFunction }) //获取当前路由数据
+      let catchFunction = function(Error){
+      }
+      this.$store.dispatch('getData',{ apiUrl, thenFunction, catchFunction}) //获取当前路由数据
     },
-    handleTabsClick(tab, event){
-        console.log(tab.name, event);
-    },
+    /**
+     * [initData 数据初始化]
+     * @return {[type]} [description]
+     */
+    initData() {
+      this.data = {
+        items:null,
+      }
+    }
   }
 }
 </script>
 <style lang="scss" scoped>
-  .layout-content-main{
-    min-height: 300px;
-    margin: 15px;
+  .flex-container{
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+  .flex-item{
+    margin: 5px;
+    background: #fff;
     overflow: hidden;
     background: #fff;
     border-radius: 4px;
