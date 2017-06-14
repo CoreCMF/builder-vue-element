@@ -3,15 +3,23 @@ import Form from './components/form'
 
 import FormItem from './components/form-item'
 import FormItemText from './components/form-item-text'
+import FormItemCheckbox from './components/form-item-checkbox'
+import FormItemSwitch from './components/form-item-switch'
+
 import Table from './components/table'
+
 import 'element-ui/lib/theme-default/index.css'
 
 const components = [
   Index,
-  Table,
+
   Form,
   FormItem,
   FormItemText,
+  FormItemCheckbox,
+  FormItemSwitch,
+
+  Table,
 ]
 
 const install = function (Vue, opts = {}) {

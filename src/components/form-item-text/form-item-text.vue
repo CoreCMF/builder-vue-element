@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     initData() {
-      console.log(this.config)
+        // console.log(this.config)
     }
   }
 }
