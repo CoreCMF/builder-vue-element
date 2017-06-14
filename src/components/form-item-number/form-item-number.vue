@@ -1,23 +1,21 @@
 <template>
   <el-form-item :label="config.label" :prop="config.name">
-    <el-switch
-      :disabled="config.disabled"
-      :width="config.width"
-      :on-icon-class="config.onIconClass"
-      :off-icon-class="config.offIconClass"
-      :on-text="onText"
-      :off-text="offText"
-      :on-color="onColor"
-      :off-color="offColor"
-      :name="config.name"
-      v-model="data[config.name]">
-    </el-switch>
+    <el-input-number
+    :min="config.min"
+    :max="config.max"
+    :step="config.step"
+    :size="config.size"
+    :disabled="config.disabled"
+    :controls="config.controls"
+    v-model="data[config.name]"
+  >
+    </el-input-number>
   </el-form-item>
 </template>
 
 <script>
 export default {
-  name: 'bve-form-item-switch',
+  name: 'bve-form-item-number',
   props: {
     data: {
         type: '',
@@ -30,10 +28,7 @@ export default {
   },
   data() {
     return {
-      onText:   this.config.onText,
-      offText:  this.config.offText,
-      onColor:  this.config.onColor,
-      offColor: this.config.offColor,
+
     };
   },
   created() {
@@ -44,17 +39,20 @@ export default {
   },
   methods: {
     initData() {
-      if (this.config.onText==null) {
-          this.onText = '开启';
+      if (!this.config.min) {
+          this.config.min = 0;
       }
-      if (this.config.offText==null) {
-          this.offText = '关闭';
+      if (!this.config.max) {
+          this.config.max = Infinity;
       }
-      if (this.config.onColor==null) {
-          this.onColor = '#1abc9c';
+      if (!this.config.step) {
+          this.config.step = 1;
       }
-      if (this.config.offColor==null) {
-          this.offColor = '#95a5a6';
+      if (!this.config.disabled) {
+          this.config.disabled = false;
+      }
+      if (!this.config.controls) {
+          this.config.controls = true;
       }
     }
   }

@@ -10,6 +10,7 @@
       <bve-form-item-text     :data="fromData" :config="config" v-if="config.type == 'text'"     />
       <bve-form-item-checkbox :data="fromData" :config="config" v-if="config.type == 'checkbox'" />
       <bve-form-item-switch   :data="fromData" :config="config" v-if="config.type == 'switch'"   />
+      <bve-form-item-number   :data="fromData" :config="config" v-if="config.type == 'number'"   />
     </template>
     <el-form-item>
      <el-button type="primary" @click="submitForm('bvefrom')">提交</el-button>

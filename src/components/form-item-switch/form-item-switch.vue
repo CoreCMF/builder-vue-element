@@ -10,7 +10,8 @@
       :on-color="onColor"
       :off-color="offColor"
       :name="config.name"
-      v-model="data[config.name]">
+      v-model="data[config.name]"
+    >
     </el-switch>
   </el-form-item>
 </template>
