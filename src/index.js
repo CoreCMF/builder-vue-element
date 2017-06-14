@@ -5,6 +5,7 @@ import FormItem from './components/form-item'
 import FormItemText from './components/form-item-text'
 import FormItemCheckbox from './components/form-item-checkbox'
 import FormItemSwitch from './components/form-item-switch'
+import FormItemNumber from './components/form-item-number'
 
 import Table from './components/table'
 
@@ -18,6 +19,7 @@ const components = [
   FormItemText,
   FormItemCheckbox,
   FormItemSwitch,
+  FormItemNumber,
 
   Table,
 ]
