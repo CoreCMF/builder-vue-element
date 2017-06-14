@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-bind:style="formStyle">
     <el-tabs v-if="data.tabs">
       <el-tab-pane v-for="(tab,key) in data.tabs" :key="key" :name="key.toString()" :label="tab">
         <bve-form-item :data="data"/>
@@ -16,7 +16,14 @@ export default {
       data: {
           type: Object,
           default: ''
-      },
+      }
+  },
+  data() {
+    return {
+      formStyle: {
+        width: '500px'
+      }
+    };
   },
   created() {
     this.initData();//初始化页面数据
