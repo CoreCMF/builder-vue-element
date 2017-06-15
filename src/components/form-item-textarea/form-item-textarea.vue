@@ -1,7 +1,7 @@
 <template>
   <el-form-item :label="config.label" :prop="config.name">
     <el-input
-      type="text"
+      type="textarea"
       :placeholder="config.placeholder"
       :maxlength="config.maxlength"
       :minlength="config.minlength"
@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: 'bve-form-item-text',
+  name: 'bve-form-item-textarea',
   props: {
     data: {
         type: '',

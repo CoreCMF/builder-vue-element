@@ -12,6 +12,11 @@
         :config="config"
         v-if="config[data.tabsGroup] == tab && config.type == 'text'"
       />
+      <bve-form-item-textarea
+        :data="fromData"
+        :config="config"
+        v-if="config[data.tabsGroup] == tab && config.type == 'textarea'"
+      />
       <bve-form-item-checkbox
         :data="fromData"
         :config="config"
