@@ -72,7 +72,7 @@ store.state.builderIndex = { template: '<bve-index/>' }
 }
 ```
 #### items form config
-具体参考饿了么框架form表单使用说明 [飞机票](http://element.eleme.io/#/zh-CN/component/form#form-attributes)
+具体参考饿了么框架form表单使用说明 [飞机票](https://github.com/ElemeFE/element/blob/dev/examples/docs/zh-CN/form.md#form-attributes)
 
 | 参数      | 说明          | 类型      | 可选值                           | 默认值  | 必填值 | 飞机票 |
 |---------- |-------------- |---------- |--------------------------------  |-------- |-------- |-------- |
