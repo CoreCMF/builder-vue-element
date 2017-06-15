@@ -62,6 +62,31 @@ store.state.builderIndex = { template: '<bve-index/>' }
   type:'form'
 }
 ```
+#### items form apiUrl
+| 参数      | 说明          | 类型      | 可选值                           | 默认值  | 必填值 | 飞机票 |
+|---------- |-------------- |---------- |--------------------------------  |-------- |-------- |-------- |
+| submit | form项目数据提交保持通常地址 。| string | — | — | 是 | - |
+```
+{
+  'submit':'http://corecmf.dev/api/admin/system/system/update',
+}
+```
+#### items form config
+具体参考饿了么框架form表单使用说明 [飞机票](http://element.eleme.io/#/zh-CN/component/form#form-attributes)
+| 参数      | 说明          | 类型      | 可选值                           | 默认值  | 必填值 | 飞机票 |
+|---------- |-------------- |---------- |--------------------------------  |-------- |-------- |-------- |
+| labelWidth | 表单域标签的宽度，所有的 form-item 都会继承 form 组件的 labelWidth 的值 。| string | — | — | - | - |
+| inline | 行内表单模式 。| boolean | - | false | - | - |
+| labelPosition | 表单域标签的位置 。| string | right/left/top | right | - | - |
+| labelSuffix | 表单域标签的后缀 。| string | — | — | - | - |
+```
+{
+  labelWidth:"100px",
+  inline:false,
+  labelPosition:"right",
+  labelSuffix:"",
+}
+```
 #### items table Object
 | 参数      | 说明          | 类型      | 可选值                           | 默认值  | 必填值 | 飞机票 |
 |---------- |-------------- |---------- |--------------------------------  |-------- |-------- |-------- |
