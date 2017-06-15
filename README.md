@@ -46,5 +46,14 @@ store.state.builderIndex = { template: '<bve-index/>' }
 | apiUrl | form项目使用到的通信结构url定义于此处 。| Object | — | — | — |
 | apiUrl | form项目使用到的通信结构url定义于此处 。| Object | — | — | — |
 ```
-
+```
+#### items table Object
+| 参数      | 说明          | 类型      | 可选值                           | 默认值  | 飞机票 |
+|---------- |-------------- |---------- |--------------------------------  |-------- |-------- |
+| apiUrl | table项目使用到的通信url 。| Object | — | — |
+| config | table项目配置参数 。| Object | — | — |
+| apiUrl | table项目使用到的通信结构url定义于此处 。| Object | — | — | — |
+| apiUrl | table项目使用到的通信结构url定义于此处 。| Object | — | — | — |
+| apiUrl | table项目使用到的通信结构url定义于此处 。| Object | — | — | — |
+```
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
