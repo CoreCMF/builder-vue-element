@@ -9,6 +9,7 @@ import FormItemNumber from './components/form-item-number'
 import FormItemTextarea from './components/form-item-textarea'
 import FormItemHidden from './components/form-item-hidden'
 import FormItemPassword from './components/form-item-password'
+import FormItemTags from './components/form-item-tags'
 
 import Table from './components/table'
 
@@ -26,6 +27,7 @@ const components = [
   FormItemTextarea,
   FormItemHidden,
   FormItemPassword,
+  FormItemTags,
 
   Table,
 ]

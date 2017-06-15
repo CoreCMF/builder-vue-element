@@ -42,6 +42,11 @@
         :config="config"
         v-if="config[data.tabsGroup] == tab && config.type == 'number'"
       />
+      <bve-form-item-tags
+        :data="fromData"
+        :config="config"
+        v-if="config[data.tabsGroup] == tab && config.type == 'tags'"
+      />
     </template>
     <el-form-item>
      <el-button type="primary" @click="submitForm('bvefrom')">提交</el-button>
