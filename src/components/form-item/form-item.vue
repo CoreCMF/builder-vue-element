@@ -7,10 +7,26 @@
     :label-suffix="fromConfig.labelSuffix"
     :label-width="fromConfig.labelWidth">
     <template v-for="config in data.data">
-      <bve-form-item-text     :data="fromData" :config="config" v-if="config.type == 'text'"     />
-      <bve-form-item-checkbox :data="fromData" :config="config" v-if="config.type == 'checkbox'" />
-      <bve-form-item-switch   :data="fromData" :config="config" v-if="config.type == 'switch'"   />
-      <bve-form-item-number   :data="fromData" :config="config" v-if="config.type == 'number'"   />
+      <bve-form-item-text
+        :data="fromData"
+        :config="config"
+        v-if="config[data.tabsGroup] == tab && config.type == 'text'"
+      />
+      <bve-form-item-checkbox
+        :data="fromData"
+        :config="config"
+        v-if="config[data.tabsGroup] == tab && config.type == 'checkbox'"
+      />
+      <bve-form-item-switch
+        :data="fromData"
+        :config="config"
+        v-if="config[data.tabsGroup] == tab && config.type == 'switch'"
+      />
+      <bve-form-item-number
+        :data="fromData"
+        :config="config"
+        v-if="config[data.tabsGroup] == tab && config.type == 'number'"
+      />
     </template>
     <el-form-item>
      <el-button type="primary" @click="submitForm('bvefrom')">提交</el-button>
@@ -27,6 +43,11 @@ export default {
       type: Object,
       default: ''
     },
+    tab: {
+      type: '',
+      default: null
+    },
+
   },
   created() {
     this.initData();//初始化页面数据

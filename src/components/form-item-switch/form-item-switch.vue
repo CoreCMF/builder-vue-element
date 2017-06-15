@@ -45,16 +45,16 @@ export default {
   },
   methods: {
     initData() {
-      if (this.config.onText==null) {
+      if (!this.config.onText) {
           this.onText = '开启';
       }
-      if (this.config.offText==null) {
+      if (!this.config.offText) {
           this.offText = '关闭';
       }
-      if (this.config.onColor==null) {
+      if (!this.config.onColor) {
           this.onColor = '#1abc9c';
       }
-      if (this.config.offColor==null) {
+      if (!this.config.offColor) {
           this.offColor = '#95a5a6';
       }
     }

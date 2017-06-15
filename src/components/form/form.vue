@@ -2,7 +2,7 @@
   <div v-bind:style="formStyle">
     <el-tabs v-if="data.tabs">
       <el-tab-pane v-for="(tab,key) in data.tabs" :key="key" :name="key.toString()" :label="tab">
-        <bve-form-item :data="data"/>
+        <bve-form-item :data="data" :tab="key"/>
       </el-tab-pane>
     </el-tabs>
     <bve-form-item :data="data" v-else/>
@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     initData() {
-      // console.log(this.data);
+
     }
   }
 }
