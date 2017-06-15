@@ -42,7 +42,7 @@ store.state.builderIndex = { template: '<bve-index/>' }
 |---------- |-------------- |---------- |--------------------------------  |-------- |-------- |-------- |
 | apiUrl | form项目使用到的通信url 。| Object | — | — | 是 | [apiUrl](#items-form-apiurl) |
 | config | form项目配置参数 。| Object | — | — | 是 | [config](#items-form-config) |
-| data   | form项目渲染数据| array | — | — | 是 | [data](#items-form-data) |
+| data   | form项目渲染数据（由多个数据对象构成的数组）| array | — | — | 是 | [data](#items-form-data) |
 | tabs   | form项目使用tab标签页分组显示form 。| array/Object | — | — | — | — |
 | tabsGroup | data数据进行tab分组的依据字段 。| string | — | — | 使用tabs后必填 | — |
 | type   | 项目类型 | string | form | form | 是 | — |
@@ -86,6 +86,22 @@ store.state.builderIndex = { template: '<bve-index/>' }
   inline:false,
   labelPosition:"right",
   labelSuffix:"",
+}
+```
+#### items form data
+由于form item很多下面是公共部分说明
+具体form组件参数请自行 饿了么ui参考 [飞机票](http://element.eleme.io/#/zh-CN/component/radio)
+| 参数      | 说明          | 类型      | 可选值                           | 默认值  | 必填值 | 飞机票 |
+|---------- |-------------- |---------- |--------------------------------  |-------- |-------- |-------- |
+| label | 标签文本 。| string | — | — | 是 | - |
+| name | 字段名 。| string | — | — | 是 | - |
+| type | form item 元素样式(具体样式类型数据请飞机票) 。| string | text/checkbox/switch/number | — | 是 | [text](#items-form-data-text) [checkbox](#items-form-data-checkbox) [switch](#items-form-data-switch) [number](#items-form-data-number) |
+| value | 数据值 。| string/number/boolean | — | — | 是 | - |
+| group | 使用tabs数据分组字段 。| string | — | — | form启用tabs必填 | - |
+| placeholder | 输入框占位文本 。| string | — | — | - | - |
+```
+{
+  'submit':'http://corecmf.dev/api/admin/system/system/update',
 }
 ```
 #### items table Object
