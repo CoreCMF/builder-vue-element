@@ -40,10 +40,10 @@ store.state.builderIndex = { template: '<bve-index/>' }
 #### items form Object
 | 参数      | 说明          | 类型      | 可选值                           | 默认值  | 必填值 | 飞机票 |
 |---------- |-------------- |---------- |--------------------------------  |-------- |-------- |-------- |
-| apiUrl | form项目使用到的通信url 。| Object | — | 是 | [apiUrl](#items-form-apiUrl) |
-| config | form项目配置参数 。| Object | — | 是 | [config](#items-form-config) |
+| apiUrl | form项目使用到的通信url 。| Object | — | — | 是 | [apiUrl](#items-form-apiUrl) |
+| config | form项目配置参数 。| Object | — | — | 是 | [config](#items-form-config) |
 | data   | form项目渲染数据| array | — | — | 是 | [data](#items-form-data) |
-| tabs   | form项目使用tab分组数据显示 。| array/Object | — | — | — | — |
+| tabs   | form项目使用tab标签页分组显示form 。| array/Object | — | — | — | — |
 | tabsGroup | data数据进行tab分组的依据字段 。| string | — | — | 使用tabs后必填 | — |
 | type   | 项目类型 | string | form | form | 是 | — |
 ```
