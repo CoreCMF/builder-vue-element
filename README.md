@@ -91,6 +91,7 @@ store.state.builderIndex = { template: '<bve-index/>' }
 #### items form data
 由于form item很多下面是公共部分说明
 具体form组件参数请自行 饿了么ui参考 [飞机票](http://element.eleme.io/#/zh-CN/component/radio)
+
 | 参数      | 说明          | 类型      | 可选值                           | 默认值  | 必填值 | 飞机票 |
 |---------- |-------------- |---------- |--------------------------------  |-------- |-------- |-------- |
 | label | 标签文本 。| string | — | — | 是 | - |
