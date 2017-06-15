@@ -26,7 +26,7 @@ store.state.builderIndex = { template: '<bve-index/>' }
 ### apiUrl json
 | 参数      | 说明          | 类型      | 可选值                           | 默认值  | 飞机票 |
 |---------- |-------------- |---------- |--------------------------------  |-------- |-------- |
-| items | 页面显示项目(可以是form、table等数据对象) 。| array | — | — | [>](#items-form-Object)  |
+| items | 页面显示项目(可以是form、table等数据对象) 。| array | — | — | [form](#items-form-object) [table](#items-table-object) |
 | title | 页面标题  | string | — | — | — |
 ```
 {
