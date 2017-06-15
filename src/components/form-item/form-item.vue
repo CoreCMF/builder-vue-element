@@ -17,6 +17,16 @@
         :config="config"
         v-if="config[data.tabsGroup] == tab && config.type == 'textarea'"
       />
+      <bve-form-item-hidden
+        :data="fromData"
+        :config="config"
+        v-if="config[data.tabsGroup] == tab && config.type == 'hidden'"
+      />
+      <bve-form-item-password
+        :data="fromData"
+        :config="config"
+        v-if="config[data.tabsGroup] == tab && config.type == 'password'"
+      />
       <bve-form-item-checkbox
         :data="fromData"
         :config="config"
