@@ -90,7 +90,7 @@ store.state.builderIndex = { template: '<bve-index/>' }
 ```
 #### items form data
 由于form item很多下面是公共部分说明
-具体form组件参数请自行 饿了么ui参考 [飞机票](http://element.eleme.io/#/zh-CN/component/radio)
+具体form组件参数请自行 饿了么ui参考 [飞机票](http://element.eleme.io/#/zh-CN/component)
 
 | 参数      | 说明          | 类型      | 可选值                           | 默认值  | 必填值 | 飞机票 |
 |---------- |-------------- |---------- |--------------------------------  |-------- |-------- |-------- |
@@ -98,11 +98,15 @@ store.state.builderIndex = { template: '<bve-index/>' }
 | name | 字段名 。| string | — | — | 是 | - |
 | type | form item 元素样式(具体样式类型数据请飞机票) 。| string | text/checkbox/switch/number | — | 是 | [text](#items-form-data-text) [checkbox](#items-form-data-checkbox) [switch](#items-form-data-switch) [number](#items-form-data-number) |
 | value | 数据值 。| string/number/boolean | — | — | 是 | - |
-| group | 使用tabs数据分组字段 。| string | — | — | form启用tabs必填 | - |
-| placeholder | 输入框占位文本 。| string | — | — | - | - |
+| group | 使用tabs数据分组字段 。| string/number | — | — | form启用tabs必填 | - |
 ```
 {
-  'submit':'http://corecmf.dev/api/admin/system/system/update',
+  'label':'网站标题',
+  'name': 'WEB_SITE_TITLE',
+  'type': 'text',
+  'value':'corecmf'
+  'group':0
+
 }
 ```
 #### items table Object
