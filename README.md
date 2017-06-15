@@ -73,6 +73,7 @@ store.state.builderIndex = { template: '<bve-index/>' }
 ```
 #### items form config
 具体参考饿了么框架form表单使用说明 [飞机票](http://element.eleme.io/#/zh-CN/component/form#form-attributes)
+
 | 参数      | 说明          | 类型      | 可选值                           | 默认值  | 必填值 | 飞机票 |
 |---------- |-------------- |---------- |--------------------------------  |-------- |-------- |-------- |
 | labelWidth | 表单域标签的宽度，所有的 form-item 都会继承 form 组件的 labelWidth 的值 。| string | — | — | - | - |
