@@ -7,7 +7,7 @@
     :size="config.size"
     :disabled="config.disabled"
     :controls="config.controls"
-    v-model="data[config.name]"
+    v-model="currentValue"
   >
     </el-input-number>
   </el-form-item>
@@ -17,10 +17,7 @@
 export default {
   name: 'bve-form-item-number',
   props: {
-    data: {
-        type: '',
-        default: ''
-    },
+    value:{},
     config: {
         type: Object,
         default: ''
@@ -28,14 +25,19 @@ export default {
   },
   data() {
     return {
-
+      currentValue:this.value
     };
   },
   created() {
     this.initData();//初始化页面数据
   },
   watch: {
-      data:'initData',
+    value() {
+      this.currentValue = this.value
+    },
+    currentValue() {
+      this.$emit('input', this.currentValue)
+    }
   },
   methods: {
     initData() {

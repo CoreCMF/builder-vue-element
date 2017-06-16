@@ -28,10 +28,7 @@
 export default {
   name: 'bve-form-item-tags',
   props: {
-    value:{
-      type: '',
-      default: ''
-    },
+    value:{},
     config: {
       type: Object,
       default: ''
@@ -52,12 +49,11 @@ export default {
     this.initData();//初始化页面数据
   },
   watch: {
-    'value'(val, oldValue) {
-      this.setCurrentValue(val)
-    }
+    value:'initData'
   },
   methods: {
     initData() {
+      this.currentValue = this.value
       this.dynamicTags = this.currentValue.toString().split(',')
     },
     handleClose(tag) {
@@ -75,10 +71,6 @@ export default {
         this.$emit('input', this.currentValue)
       }
       this.inputValue = '';
-    },
-    setCurrentValue(value) {
-      this.currentValue = this.value
-      this.initData()
     }
   }
 }
