@@ -8,6 +8,7 @@
     :label-width="fromConfig.labelWidth">
     <template v-for="config in data.data">
       <bve-form-item-text
+        v-model="fromData"
         :data="fromData"
         :config="config"
         v-if="config[data.tabsGroup] == tab && config.type == 'text'"
@@ -43,6 +44,7 @@
         v-if="config[data.tabsGroup] == tab && config.type == 'number'"
       />
       <bve-form-item-tags
+        v-model="fromData[config.name]"
         :data="fromData"
         :config="config"
         v-if="config[data.tabsGroup] == tab && config.type == 'tags'"

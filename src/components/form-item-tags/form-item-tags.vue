@@ -18,17 +18,18 @@
 export default {
   name: 'bve-form-item-tags',
   props: {
-    data: {
-        type: '',
-        default: ''
+    value:{
+      type: '',
+      default: ''
     },
     config: {
-        type: Object,
-        default: ''
-    },
+      type: Object,
+      default: ''
+    }
   },
   data() {
     return {
+      currentValue:this.value,
       dynamicTags: [],
       inputValue: '',
       tagStyle:{
@@ -41,20 +42,23 @@ export default {
     this.initData();//初始化页面数据
   },
   watch: {
-      data:'initData'
+    'value'(val, oldValue) {
+      this.setCurrentValue(val)
+    }
   },
   methods: {
     initData() {
-      console.log('demo')
-      let name = this.config.name
-      this.dynamicTags = this.data[name].toString().split(',')
+      this.dynamicTags = this.currentValue.toString().split(',')
     },
     handleClose(tag) {
-      let name = this.config.name
       this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1)
-      this.data[name] = this.dynamicTags.join(',')
-      console.log(this.data[name])
+      this.currentValue = this.dynamicTags.join(',')
+      this.$emit('input', this.currentValue)
     },
+    setCurrentValue(value) {
+      this.currentValue = this.value
+      this.initData()
+    }
   }
 }
 </script>
