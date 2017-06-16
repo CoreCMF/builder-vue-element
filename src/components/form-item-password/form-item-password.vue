@@ -15,7 +15,7 @@
       :min="config.min"
       :autofocus="config.autofocus"
       :form="config.form"
-      v-model="data[config.name]">
+      v-model="currentValue">
     </el-input>
   </el-form-item>
 </template>
@@ -24,17 +24,27 @@
 export default {
   name: 'bve-form-item-password',
   props: {
-    data: {
-        type: '',
-        default: ''
-    },
+    value:{},
     config: {
         type: Object,
         default: ''
     },
   },
+  data() {
+    return {
+      currentValue:this.value
+    };
+  },
   created() {
     this.initData();//初始化页面数据
+  },
+  watch: {
+    value() {
+      this.currentValue = this.value
+    },
+    currentValue() {
+      this.$emit('input', this.currentValue)
+    }
   },
   methods: {
     initData() {

@@ -23,7 +23,7 @@
         v-if="config[data.tabsGroup] == tab && config.type == 'hidden'"
       />
       <bve-form-item-password
-        :data="fromData"
+        v-model="fromData[config.name]"
         :config="config"
         v-if="config[data.tabsGroup] == tab && config.type == 'password'"
       />
