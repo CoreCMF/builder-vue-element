@@ -49,7 +49,12 @@ export default {
     this.initData();//初始化页面数据
   },
   watch: {
-    value:'initData'
+    value() {
+      this.initData()
+    },
+    currentValue() {
+      this.$emit('input', this.currentValue)
+    }
   },
   methods: {
     initData() {
@@ -59,7 +64,6 @@ export default {
     handleClose(tag) {
       this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1)
       this.currentValue = this.dynamicTags.join(',')
-      this.$emit('input', this.currentValue)
     },
     handleInputConfirm() {
       let name = this.config.name
@@ -68,7 +72,6 @@ export default {
       if (inputValue) {
         this.dynamicTags.push(inputValue);
         this.currentValue = dynamicTags.join(',')
-        this.$emit('input', this.currentValue)
       }
       this.inputValue = '';
     }

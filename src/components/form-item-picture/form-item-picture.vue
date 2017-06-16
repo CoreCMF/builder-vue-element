@@ -70,6 +70,7 @@ export default {
   watch: {
     value() {
       this.currentValue = this.value
+      this.imageUrl = this.config.imageUrl
     },
     currentValue() {
       this.$emit('input', this.currentValue)
@@ -102,14 +103,14 @@ export default {
      handleSuccess(Response, file, fileList){
         /* [if 上传成功定义显示图片赋值ID]*/
         if (Response.type=="success") {
-            let name = this.config.name
-            this.imageUrl = URL.createObjectURL(file.raw);
-            // this.datas[name] = Response.uploadData.id;
+          this.currentValue = Response.uploadData.id;
+          this.imageUrl = URL.createObjectURL(file.raw);
         }
         this.$notify({
-            title: Response.title,
-            message: Response.message,
-            type: Response.type,
+          title: Response.title,
+          message: Response.message,
+          type: Response.type,
+          offset:100
         });
     },
     handleError(err, response, file){
