@@ -11,6 +11,16 @@
     >
     {{tag}}
     </el-tag>
+    <el-input
+      class="input-new-tag"
+      v-model="inputValue"
+      ref="saveTagInput"
+      size="mini"
+      placeholder="添加Tags"
+      @keyup.enter.native="handleInputConfirm"
+      @blur="handleInputConfirm"
+    >
+    </el-input>
   </el-form-item>
 </template>
 
@@ -55,6 +65,17 @@ export default {
       this.currentValue = this.dynamicTags.join(',')
       this.$emit('input', this.currentValue)
     },
+    handleInputConfirm() {
+      let name = this.config.name
+      let inputValue = this.inputValue;
+      let dynamicTags = this.dynamicTags;
+      if (inputValue) {
+        this.dynamicTags.push(inputValue);
+        this.currentValue = dynamicTags.join(',')
+        this.$emit('input', this.currentValue)
+      }
+      this.inputValue = '';
+    },
     setCurrentValue(value) {
       this.currentValue = this.value
       this.initData()
@@ -63,5 +84,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
+  .input-new-tag{
+    width:78px !important;
+    margin-left:10px !important;
+  }
 </style>
