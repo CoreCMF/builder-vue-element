@@ -28,12 +28,12 @@
         v-if="config[data.tabsGroup] == tab && config.type == 'password'"
       />
       <bve-form-item-checkbox
-        :data="fromData"
+        v-model="fromData[config.name]"
         :config="config"
         v-if="config[data.tabsGroup] == tab && config.type == 'checkbox'"
       />
       <bve-form-item-switch
-        :data="fromData"
+        v-model="fromData[config.name]"
         :config="config"
         v-if="config[data.tabsGroup] == tab && config.type == 'switch'"
       />

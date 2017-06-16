@@ -10,7 +10,7 @@
       :on-color="onColor"
       :off-color="offColor"
       :name="config.name"
-      v-model="data[config.name]"
+      v-model="currentValue"
     >
     </el-switch>
   </el-form-item>
@@ -20,10 +20,7 @@
 export default {
   name: 'bve-form-item-switch',
   props: {
-    data: {
-        type: '',
-        default: ''
-    },
+    value:{},
     config: {
         type: Object,
         default: ''
@@ -31,6 +28,7 @@ export default {
   },
   data() {
     return {
+      currentValue:this.value,
       onText:   this.config.onText,
       offText:  this.config.offText,
       onColor:  this.config.onColor,
@@ -41,7 +39,12 @@ export default {
     this.initData();//初始化页面数据
   },
   watch: {
-      data:'initData',
+    value() {
+      this.currentValue = this.value
+    },
+    currentValue() {
+      this.$emit('input', this.currentValue)
+    }
   },
   methods: {
     initData() {
