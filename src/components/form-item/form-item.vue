@@ -13,12 +13,12 @@
         v-if="config[data.tabsGroup] == tab && config.type == 'text'"
       />
       <bve-form-item-textarea
-        :data="fromData"
+        v-model="fromData[config.name]"
         :config="config"
         v-if="config[data.tabsGroup] == tab && config.type == 'textarea'"
       />
       <bve-form-item-hidden
-        :data="fromData"
+        v-model="fromData[config.name]"
         :config="config"
         v-if="config[data.tabsGroup] == tab && config.type == 'hidden'"
       />
