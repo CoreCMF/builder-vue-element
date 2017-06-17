@@ -23,7 +23,7 @@
         <img v-if="imageUrl"
           :src="imageUrl"
           :style="stylePicture"
-          class="img-responsive"
+          class="img-fluid"
           :width="config.width"
           :height="config.height"
         >
@@ -45,53 +45,62 @@ export default {
   },
   data() {
     return {
-      currentValue:this.value,
-      imageUrl: '',
       headers: {},
-      /**
-       * [style下面是样式定义]
-       */
-      stylePictureUploaderIcon:{
-            fontSize: '28px',
-            color: '#8c939d',
-            width: '178px',
-            height: '178px',
-            lineHeight: '178px',
-            textAlign: 'center',
-      },
-      stylePicture:{
-        padding:'0.07in'
-      }
+      newImageUrl:'',
     };
   },
   created() {
     this.initData();//初始化页面数据
   },
-  watch: {
-    value() {
-      this.currentValue = this.value
-      this.imageUrl = this.config.imageUrl
+  computed: {
+    currentValue: {
+      get() {
+          return this.value;
+      },
+      set(newValue) {
+        this.$emit('input', newValue)
+      }
     },
-    currentValue() {
-      this.$emit('input', this.currentValue)
+    imageUrl() {
+      if (this.newImageUrl && this.config.value!=this.value) {
+        return this.newImageUrl
+      }
+      return this.config.imageUrl
+    },
+    stylePictureUploaderIcon() {
+      if (this.config.stylePictureUploaderIcon) {
+        return this.config.stylePictureUploaderIcon
+      }
+      return {
+        fontSize: '28px',
+        color: '#8c939d',
+        width: '178px',
+        height: '178px',
+        lineHeight: '178px',
+        textAlign: 'center',
+      }
+    },
+    stylePicture() {
+      if (this.config.stylePicture) {
+        return this.config.stylePicture
+      }
+      return {
+        padding:'0.07in'
+      }
     }
   },
   methods: {
     initData() {
-      if (this.config.imageUrl) { this.imageUrl = this.config.imageUrl}
       if (!this.config.fileName) { this.config.fileName = 'file' }
       if (!this.config.withCredentials) { this.config.withCredentials = false }
       if (!this.config.showFileList) { this.config.showFileList = false }
       if (!this.config.class) { this.config.class = 'picture-uploader' }
       // 上传文件大小显示语言提示beging
       if (!this.config.maxSizeLang) { this.config.maxSizeLang = {} }
-      if (!this.config.maxSizeLang.title) { this.config.maxSizeLang.title = '文件大小超过限制' }
+      if (!this.config.maxSizeLang.title) { this.config.maxSizeLang.title = '文件过大' }
       if (!this.config.maxSizeLang.message) { this.config.maxSizeLang.message = '文件大小超过系统限制' }
       if (!this.config.maxSizeLang.type) { this.config.maxSizeLang.type = 'warning' }
       // 上传文件大小显示语言提示end
-      //样式传参
-      if (this.config.stylePictureUploaderIcon) { this.stylePictureUploaderIcon = this.config.stylePictureUploaderIcon }
-      if (this.config.stylePicture) { this.stylePicture = this.config.stylePicture }
     },
     handleRemove(file, fileList) {
         // let name = this.config.name
@@ -104,7 +113,7 @@ export default {
         /* [if 上传成功定义显示图片赋值ID]*/
         if (Response.type=="success") {
           this.currentValue = Response.uploadData.id;
-          this.imageUrl = URL.createObjectURL(file.raw);
+          this.newImageUrl = URL.createObjectURL(file.raw);
         }
         this.$notify({
           title: Response.title,
@@ -126,6 +135,7 @@ export default {
               title: this.config.maxSizeLang.title,
               message: this.config.maxSizeLang.message,
               type: this.config.maxSizeLang.type,
+              offset:100
           });
           return false;
       }
@@ -135,6 +145,7 @@ export default {
 </script>
 <style lang="scss" scoped>
   .upload {
+    line-height: 0px;
     border: 1px dashed #d9d9d9;
     border-radius: 6px;
     cursor: pointer;
@@ -143,5 +154,12 @@ export default {
   }
   .upload:hover {
     border-color: #20a0ff;
+  }
+  .img-fluid{
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    max-width: 100%;
+    height: auto;
   }
 </style>
