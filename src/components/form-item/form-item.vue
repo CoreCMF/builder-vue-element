@@ -98,6 +98,11 @@ export default {
       }
     };
   },
+  computed: {
+    apiUrlSubmit() {
+      return this.data.apiUrl.submit
+    }
+  },
   methods: {
     initData() {
       this.setFromData()
@@ -131,7 +136,27 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          console.log(this.fromData)
+          let _this = this
+          let apiUrl = this.apiUrlSubmit
+          let postData = this.fromData
+          let thenFunction = function(Response) {
+            let data = Response.data
+            console.log(data);
+            // data.duration = data.duration ? data.duration : 4500;  //设置自动取消时间
+            _this.$notify({
+              title: data.title,
+              message: data.message,
+              type: data.type,
+              iconClass: data.iconClass,
+              customClass: data.customClass,
+              duration: data.duration,
+              onClose: data.onClose,
+              offset: data.offset,
+            })
+          }
+          let catchFunction = function(Error){
+          }
+          this.$store.dispatch('getData',{ apiUrl, postData, thenFunction, catchFunction})
         } else {
           console.log('error submit!! 请检查你的提交信息是否符合规则');
           return false;
