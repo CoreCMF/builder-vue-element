@@ -57,6 +57,11 @@
         :config="config"
         v-if="config[data.tabsGroup] == tab && config.type == 'checkbox'"
       />
+      <bve-form-item-select
+        v-model="fromData[config.name]"
+        :config="config"
+        v-if="config[data.tabsGroup] == tab && config.type == 'select'"
+      />
     </template>
     <el-form-item>
      <el-button type="primary" @click="submitForm('bvefrom')">提交</el-button>

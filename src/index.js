@@ -11,6 +11,7 @@ import FormItemHidden from './components/form-item-hidden'
 import FormItemPassword from './components/form-item-password'
 import FormItemTags from './components/form-item-tags'
 import FormItemPicture from './components/form-item-picture'
+import FormItemSelect from './components/form-item-select'
 
 import Table from './components/table'
 
@@ -30,6 +31,7 @@ const components = [
   FormItemPassword,
   FormItemTags,
   FormItemPicture,
+  FormItemSelect,
 
   Table,
 ]
