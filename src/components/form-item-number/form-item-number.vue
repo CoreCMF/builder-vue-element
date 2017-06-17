@@ -23,38 +23,13 @@ export default {
         default: ''
     },
   },
-  data() {
-    return {
-      currentValue:this.value
-    };
-  },
-  created() {
-    this.initData();//初始化页面数据
-  },
-  watch: {
-    value() {
-      this.currentValue = this.value
-    },
-    currentValue() {
-      this.$emit('input', this.currentValue)
-    }
-  },
-  methods: {
-    initData() {
-      if (!this.config.min) {
-          this.config.min = 0;
-      }
-      if (!this.config.max) {
-          this.config.max = Infinity;
-      }
-      if (!this.config.step) {
-          this.config.step = 1;
-      }
-      if (!this.config.disabled) {
-          this.config.disabled = false;
-      }
-      if (!this.config.controls) {
-          this.config.controls = true;
+  computed: {
+    currentValue: {
+      get() {
+          return this.value;
+      },
+      set(newValue) {
+        this.$emit('input', newValue)
       }
     }
   }

@@ -25,14 +25,6 @@ export default {
       }
     };
   },
-  created() {
-    this.initData();//初始化页面数据
-  },
-  methods: {
-    initData() {
-
-    }
-  }
 }
 </script>
 <style lang="scss" scoped>

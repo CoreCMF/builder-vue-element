@@ -36,8 +36,6 @@ export default {
   },
   data() {
     return {
-      currentValue:this.value,
-      dynamicTags: [],
       inputValue: '',
       tagStyle:{
         marginLeft:'10px' ,
@@ -45,22 +43,20 @@ export default {
       }
     };
   },
-  created() {
-    this.initData();//初始化页面数据
-  },
-  watch: {
-    value() {
-      this.initData()
+  computed: {
+    currentValue: {
+      get() {
+          return this.value;
+      },
+      set(newValue) {
+        this.$emit('input', newValue)
+      }
     },
-    currentValue() {
-      this.$emit('input', this.currentValue)
+    dynamicTags() {
+      return this.currentValue.toString().split(',')
     }
   },
   methods: {
-    initData() {
-      this.currentValue = this.value
-      this.dynamicTags = this.currentValue.toString().split(',')
-    },
     handleClose(tag) {
       this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1)
       this.currentValue = this.dynamicTags.join(',')

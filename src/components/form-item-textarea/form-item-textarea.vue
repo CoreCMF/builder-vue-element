@@ -30,25 +30,14 @@ export default {
         default: ''
     },
   },
-  data() {
-    return {
-      currentValue:this.value
-    };
-  },
-  created() {
-    this.initData();//初始化页面数据
-  },
-  watch: {
-    value() {
-      this.currentValue = this.value
-    },
-    currentValue() {
-      this.$emit('input', this.currentValue)
-    }
-  },
-  methods: {
-    initData() {
-        // console.log(this.config)
+  computed: {
+    currentValue: {
+      get() {
+          return this.value;
+      },
+      set(newValue) {
+        this.$emit('input', newValue)
+      }
     }
   }
 }

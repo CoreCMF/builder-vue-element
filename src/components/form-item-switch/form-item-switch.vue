@@ -26,41 +26,39 @@ export default {
         default: ''
     },
   },
-  data() {
-    return {
-      currentValue:this.value,
-      onText:   this.config.onText,
-      offText:  this.config.offText,
-      onColor:  this.config.onColor,
-      offColor: this.config.offColor,
-    };
-  },
-  created() {
-    this.initData();//初始化页面数据
-  },
-  watch: {
-    value() {
-      this.currentValue = this.value
+  computed: {
+    currentValue: {
+      get() {
+          return this.value;
+      },
+      set(newValue) {
+        this.$emit('input', newValue)
+      }
     },
-    currentValue() {
-      this.$emit('input', this.currentValue)
-    }
-  },
-  methods: {
-    initData() {
+    onText() {
       if (!this.config.onText) {
-          this.onText = '开启';
+          return this.onText = '开启';
       }
+      return this.config.onText
+    },
+    offText() {
       if (!this.config.offText) {
-          this.offText = '关闭';
+          return this.offText = '关闭';
       }
+      return this.config.offText
+    },
+    onColor() {
       if (!this.config.onColor) {
-          this.onColor = '#1abc9c';
+          return this.onColor = '#1abc9c';
       }
+      return this.config.onColor
+    },
+    offColor() {
       if (!this.config.offColor) {
-          this.offColor = '#95a5a6';
+          return this.offColor = '#95a5a6';
       }
-    }
+      return this.config.offColor
+    },
   }
 }
 </script>
