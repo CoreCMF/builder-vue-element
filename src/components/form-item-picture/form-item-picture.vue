@@ -45,7 +45,6 @@ export default {
   },
   data() {
     return {
-      headers: {},
       newImageUrl:'',
     };
   },
@@ -81,12 +80,10 @@ export default {
       }
     },
     stylePicture() {
-      if (this.config.stylePicture) {
-        return this.config.stylePicture
-      }
-      return {
-        padding:'0.07in'
-      }
+      return this.config.stylePicture
+    },
+    headers() {
+      return
     }
   },
   methods: {
@@ -161,5 +158,6 @@ export default {
     -webkit-box-sizing:border-box; /* Safari */
     max-width: 100%;
     height: auto;
+    padding:0.07in;
   }
 </style>
