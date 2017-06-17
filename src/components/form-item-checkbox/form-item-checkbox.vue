@@ -1,6 +1,8 @@
 <template>
   <el-form-item :label="config.label" :prop="config.name">
-      SADA
+    <el-checkbox-group v-model="currentValue">
+      <el-checkbox v-for="(option,key) in config.options" :label="option.id" :key="key">{{ option.name }}</el-checkbox>
+    </el-checkbox-group>
   </el-form-item>
 </template>
 
@@ -17,12 +19,14 @@ export default {
         default: ''
     },
   },
-  created() {
-    this.initData();//初始化页面数据
-  },
-  methods: {
-    initData() {
-        // console.log(this.config)
+  computed: {
+    currentValue: {
+      get() {
+          return this.value;
+      },
+      set(newValue) {
+        this.$emit('input', newValue)
+      }
     }
   }
 }
