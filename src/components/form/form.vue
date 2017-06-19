@@ -1,6 +1,10 @@
 <template>
   <div class="form-item">
-    <el-tabs v-if="data.tabs" @tab-click="handleTabsClick">
+    <el-tabs
+      v-if="data.tabs"
+      @tab-click="handleTabsClick"
+      v-model="index"
+    >
       <el-tab-pane v-for="(tab,key) in data.tabs" :key="key" :name="key.toString()" :label="tab">
         <bve-form-item  v-if="index == key" :data="data"/>
       </el-tab-pane>
@@ -22,10 +26,13 @@ export default {
   computed: {
     index() {
       if (this.tabIndex) {
-        return this.tabIndex
+        return this.tabIndex.toString()
       }
       return Object.keys(this.data.tabs)[0].toString()
     }
+  },
+  created () {
+    console.log(this.index);
   },
   methods: {
     handleTabsClick(tab, event) {
