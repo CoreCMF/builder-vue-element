@@ -49,9 +49,14 @@ export default {
     this.getData()
   },
   watch: {
-    $route: 'getData',
+    $route: 'initData',
   },
   methods: {
+    initData() {
+      this.data = null
+      this.tabIndex = null
+      this.getData()
+    },
     /**
      * [getData 获取api通信数据]
      * @return {[type]} [description]
