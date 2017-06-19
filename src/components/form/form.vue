@@ -1,5 +1,5 @@
 <template>
-  <div v-bind:style="formStyle">
+  <div class="form-item">
     <el-tabs v-if="data.tabs">
       <el-tab-pane v-for="(tab,key) in data.tabs" :key="key" :name="key.toString()" :label="tab">
         <bve-form-item :data="data" :tab="key"/>
@@ -17,16 +17,14 @@ export default {
           type: Object,
           default: ''
       }
-  },
-  data() {
-    return {
-      formStyle: {
-        width: '500px'
-      }
-    };
-  },
+  }
 }
 </script>
 <style lang="scss" scoped>
-
+  .form-item{
+    background: #fff;
+    overflow: hidden;
+    border-radius: 4px;
+    padding: 10px;
+  }
 </style>

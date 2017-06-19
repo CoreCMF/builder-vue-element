@@ -1,9 +1,17 @@
 <template>
   <div class="flex-container">
-    <div class="flex-item" v-for="(item,key) in data.items">
+    <el-col
+      :xs="layout.xs"
+      :sm="layout.sm"
+      :md="layout.md"
+      :lg="layout.lg"
+      class="flex-item"
+      v-for="(item,key) in data.items"
+      :key="key"
+    >
       <bve-form  :data="item"  v-if="item.type == 'form'"/>
       <bve-table :data="item"  v-if="item.type == 'table'"/>
-    </div>
+    </el-col>
   </div>
 </template>
 
@@ -14,6 +22,22 @@ export default {
     return {
       data: null,
     }
+  },
+  computed: {
+    layout() {
+      try{
+        if (this.data.config.layout) {
+          return this.data.config.layout
+        }
+      }catch(e){
+        return {
+          xs: 24,
+          sm: 12,
+          md: 8,
+          lg: 6
+        }
+      }
+    },
   },
   created () {
     this.getData()
@@ -57,11 +81,6 @@ export default {
     padding: 10px;
   }
   .flex-item{
-    margin: 5px;
-    background: #fff;
-    overflow: hidden;
-    background: #fff;
-    border-radius: 4px;
-    padding: 15px;
+    padding: 5px;
   }
 </style>

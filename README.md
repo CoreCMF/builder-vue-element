@@ -27,6 +27,7 @@ store.state.builderIndex = { template: '<bve-index/>' }
 | 参数      | 说明          | 类型      | 可选值                           | 默认值  | 必填值 | 飞机票 |
 |---------- |-------------- |---------- |--------------------------------  |-------- |-------- |-------- |
 | items | 页面显示项目(可以是form、table等数据对象) 。| array | — | — | 是 | [formObject](#items-form-object) [tableObject](#items-table-object) |
+| config | 配置参数(layout 布局参数参考饿了么框架布局)  | Object | — | — | — | - |
 | title | 页面标题  | string | — | — | — | 是 |
 ```
 {
@@ -34,6 +35,14 @@ store.state.builderIndex = { template: '<bve-index/>' }
     0:{form Object},
     1:{table Object}
   ],
+  'config':{
+    'layout':{
+      'xs': 24,
+      'sm': 12,
+      'md': 8,
+      'lg': 6
+    }
+  }
   'title': '页面标题'
 }
 ```
@@ -80,12 +89,16 @@ store.state.builderIndex = { template: '<bve-index/>' }
 | inline | 行内表单模式 。| boolean | - | false | - | - |
 | labelPosition | 表单域标签的位置 。| string | right/left/top | right | - | - |
 | labelSuffix | 表单域标签的后缀 。| string | — | — | - | - |
+| formStyle | 自定义form外部div样式 。| Object | — | — | - | - |
 ```
 {
   labelWidth:"100px",
   inline:false,
   labelPosition:"right",
   labelSuffix:"",
+  formStyle: {
+    max-width:'600px'
+  }
 }
 ```
 #### items form data
