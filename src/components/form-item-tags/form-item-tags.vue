@@ -53,7 +53,10 @@ export default {
       }
     },
     dynamicTags() {
-      return this.currentValue.toString().split(',')
+      if (this.currentValue) {
+        return this.currentValue.toString().split(',')
+      }
+      return []
     }
   },
   methods: {
