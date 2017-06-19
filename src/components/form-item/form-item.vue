@@ -10,57 +10,57 @@
       <bve-form-item-text
         v-model="fromData[config.name]"
         :config="config"
-        v-if="config[data.tabsGroup] == tab && config.type == 'text'"
+        v-if="config.type == 'text'"
       />
       <bve-form-item-textarea
         v-model="fromData[config.name]"
         :config="config"
-        v-if="config[data.tabsGroup] == tab && config.type == 'textarea'"
+        v-if="config.type == 'textarea'"
       />
       <bve-form-item-hidden
         v-model="fromData[config.name]"
         :config="config"
-        v-if="config[data.tabsGroup] == tab && config.type == 'hidden'"
+        v-if="config.type == 'hidden'"
       />
       <bve-form-item-password
         v-model="fromData[config.name]"
         :config="config"
-        v-if="config[data.tabsGroup] == tab && config.type == 'password'"
+        v-if="config.type == 'password'"
       />
       <bve-form-item-checkbox
         v-model="fromData[config.name]"
         :config="config"
-        v-if="config[data.tabsGroup] == tab && config.type == 'checkbox'"
+        v-if="config.type == 'checkbox'"
       />
       <bve-form-item-switch
         v-model="fromData[config.name]"
         :config="config"
-        v-if="config[data.tabsGroup] == tab && config.type == 'switch'"
+        v-if="config.type == 'switch'"
       />
       <bve-form-item-number
         v-model="fromData[config.name]"
         :config="config"
-        v-if="config[data.tabsGroup] == tab && config.type == 'number'"
+        v-if="config.type == 'number'"
       />
       <bve-form-item-tags
         v-model="fromData[config.name]"
         :config="config"
-        v-if="config[data.tabsGroup] == tab && config.type == 'tags'"
+        v-if="config.type == 'tags'"
       />
       <bve-form-item-picture
         v-model="fromData[config.name]"
         :config="config"
-        v-if="config[data.tabsGroup] == tab && config.type == 'picture'"
+        v-if="config.type == 'picture'"
       />
       <bve-form-item-checkbox
         v-model="fromData[config.name]"
         :config="config"
-        v-if="config[data.tabsGroup] == tab && config.type == 'checkbox'"
+        v-if="config.type == 'checkbox'"
       />
       <bve-form-item-select
         v-model="fromData[config.name]"
         :config="config"
-        v-if="config[data.tabsGroup] == tab && config.type == 'select'"
+        v-if="config.type == 'select'"
       />
     </template>
     <el-form-item>
@@ -78,11 +78,6 @@ export default {
       type: Object,
       default: ''
     },
-    tab: {
-      type: '',
-      default: null
-    },
-
   },
   created() {
     this.initData();//初始化页面数据
@@ -90,23 +85,36 @@ export default {
   data() {
     return {
       fromData:{},
-      fromConfig:{
-        labelWidth:'80px',
-        inline:false,
-        labelPosition:'right',
-        labelSuffix:'',
-      }
     };
   },
   computed: {
     apiUrlSubmit() {
       return this.data.apiUrl.submit
+    },
+    fromConfig() {
+      let config = this.data.config;
+      if (config) {
+        return {
+          labelWidth: config.labelWidth,
+          inline: config.inline,
+          labelPosition: config.labelPosition,
+          labelSuffix: config.labelSuffix,
+        }
+      }
+      return {
+        labelWidth:'80px',
+        inline:false,
+        labelPosition:'right',
+        labelSuffix:'',
+      }
     }
+  },
+  watch: {
+    data:'initData'
   },
   methods: {
     initData() {
       this.setFromData()
-      this.setFromConfig()
     },
     /**
      * [setFromData 设置form渲染数据]
@@ -117,18 +125,6 @@ export default {
       for (var key in datas) {
         this.$set(this.fromData, datas[key].name, datas[key].value)
       }
-    },
-    /**
-     * [setFromConfig 设置form配置]
-     */
-    setFromConfig(){
-        let config = this.data.config;
-        if (config!==undefined) {
-            if (config.labelWidth) { this.fromConfig.labelWidth = config.labelWidth }
-            if (config.inline) { this.fromConfig.inline = config.inline }
-            if (config.labelPosition) { this.fromConfig.labelPosition = config.labelPosition }
-            if (config.labelSuffix) { this.fromConfig.suffix = config.labelSuffix }
-        }
     },
     /**
      * [submitForm 提交数据]
