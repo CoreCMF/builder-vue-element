@@ -31,9 +31,6 @@ export default {
       return Object.keys(this.data.tabs)[0].toString()
     }
   },
-  created () {
-    console.log(this.index);
-  },
   methods: {
     handleTabsClick(tab, event) {
       this.$emit('tab-click',tab, event)
