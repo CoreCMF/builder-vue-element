@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-container">
+  <div class="flex-container" v-if="data">
     <el-col
       :xs="layout.xs"
       :sm="layout.sm"
@@ -9,8 +9,8 @@
       v-for="(item,key) in data.items"
       :key="key"
     >
-      <bve-form  :data="item"  v-if="item.type == 'form'"/>
-      <bve-table :data="item"  v-if="item.type == 'table'"/>
+      <bve-form  @tab-click="handleTabsClick" :tab-index="tabIndex" :data="item"  v-if="item.type == 'form'"/>
+      <bve-table @tab-click="handleTabsClick" :tab-index="tabIndex" :data="item"  v-if="item.type == 'table'"/>
     </el-col>
   </div>
 </template>
@@ -21,6 +21,7 @@ export default {
   data() {
     return {
       data: null,
+      tabIndex:null
     }
   },
   computed: {
@@ -38,6 +39,11 @@ export default {
         }
       }
     },
+    postData() {
+      return {
+        tabIndex: this.tabIndex
+      }
+    }
   },
   created () {
     this.getData()
@@ -51,24 +57,20 @@ export default {
      * @return {[type]} [description]
      */
     getData() {
-      this.initData()
       let _this = this
       let apiUrl = this.$route.meta.apiUrl
+      let postData = this.postData
       let thenFunction = function(Response) {
         _this.data = Response.data
+        document.title = Response.data.title //设置页面标题
       }
       let catchFunction = function(Error){
       }
-      this.$store.dispatch('getData',{ apiUrl, thenFunction, catchFunction}) //获取当前路由数据
+      this.$store.dispatch('getData',{ apiUrl, postData, thenFunction, catchFunction}) //获取当前路由数据
     },
-    /**
-     * [initData 数据初始化]
-     * @return {[type]} [description]
-     */
-    initData() {
-      this.data = {
-        items:null,
-      }
+    handleTabsClick(tab, event) {
+      this.tabIndex = tab.index
+      this.getData()
     }
   }
 }
