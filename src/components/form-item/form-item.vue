@@ -132,7 +132,6 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          let _this = this
           let apiUrl = this.apiUrlSubmit
           let postData = this.fromData
           let notify = this.$notify
