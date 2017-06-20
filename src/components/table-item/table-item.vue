@@ -33,6 +33,9 @@
         :filter-method="column.filterMethod"
         :filtered-value="column.filteredValue"
       >
+        <template scope="scope">
+          <bve-table-item-statu v-if="column.type=='status'" v-model="scope.row[column.prop]"/>
+        </template>
       </el-table-column>
     </template>
   </el-table>
