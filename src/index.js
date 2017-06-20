@@ -1,6 +1,6 @@
 import Index from './components/index'
-import Form from './components/form'
 
+import Form from './components/form'
 import FormItem from './components/form-item'
 import FormItemText from './components/form-item-text'
 import FormItemCheckbox from './components/form-item-checkbox'
@@ -14,6 +14,8 @@ import FormItemPicture from './components/form-item-picture'
 import FormItemSelect from './components/form-item-select'
 
 import Table from './components/table'
+import TableItem from './components/table-item'
+import TableItemState from './components/table-item-statu'
 
 import 'element-ui/lib/theme-default/index.css'
 
@@ -34,6 +36,8 @@ const components = [
   FormItemSelect,
 
   Table,
+  TableItem,
+  TableItemState,
 ]
 
 const install = function (Vue, opts = {}) {
