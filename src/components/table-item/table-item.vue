@@ -34,7 +34,26 @@
         :filtered-value="column.filteredValue"
       >
         <template scope="scope">
-          <bve-table-item-statu v-if="column.type=='status'" v-model="scope.row[column.prop]"/>
+          <bve-table-item-scope
+            v-if="!column.type"
+            v-model="scope.row[column.prop]"
+            :config="column.config"
+          />
+          <bve-table-item-statu
+            v-if="column.type=='status'"
+            v-model="scope.row[column.prop]"
+          />
+          <bve-table-item-button
+            v-if="column.type=='btn'"
+            v-for="(config,key) in rightButton"
+            :key="key"
+            :config="config"
+            v-model="scope.row"
+            :multipleSelection="multipleSelection"
+            size="mini"
+            type="rightButton"
+          >
+          </bve-table-item-button>
         </template>
       </el-table-column>
     </template>
@@ -50,14 +69,11 @@ export default {
       default: ''
     },
   },
-  // created() {
-  //   this.initData();//初始化页面数据
-  // },
-  // data() {
-  //   return {
-  //     fromData:{},
-  //   };
-  // },
+  data() {
+    return {
+        multipleSelection: [],
+    }
+  },
   computed: {
     tableData() {
       return this.data.data
@@ -73,13 +89,18 @@ export default {
         return this.data.column
       }
       return []
+    },
+    rightButton() {
+      if (this.data.rightButton) {
+        return this.data.rightButton
+      }
+      return []
     }
   },
   methods: {
     handleSelectionChange(val) {
-      console.log(val);
-      // this.multipleSelection = val;
-    },
+      this.multipleSelection = val;
+    }
   }
 }
 </script>
