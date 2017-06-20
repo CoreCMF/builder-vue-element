@@ -9,8 +9,18 @@
       v-for="(item,key) in data.items"
       :key="key"
     >
-      <bve-form  @tab-click="handleTabsClick" :tab-index="tabIndex" :data="item"  v-if="item.type == 'form'"/>
-      <bve-table @tab-click="handleTabsClick" :tab-index="tabIndex" :data="item"  v-if="item.type == 'table'"/>
+      <bve-form
+        @tab-click="handleTabsClick"
+        :tab-index="tabIndex"
+        :data="item"
+        v-if="item.type == 'form'"
+        />
+      <bve-table
+        @tab-click="handleTabsClick"
+        :tab-index="tabIndex"
+        :data="item"
+        v-if="item.type == 'table'"
+        />
     </el-col>
   </div>
 </template>
@@ -43,6 +53,9 @@ export default {
       return {
         tabIndex: this.tabIndex
       }
+    },
+    update() {
+      return this.$store.state.update
     }
   },
   created () {
@@ -50,6 +63,7 @@ export default {
   },
   watch: {
     $route: 'initData',
+    update: 'getData'
   },
   methods: {
     initData() {
