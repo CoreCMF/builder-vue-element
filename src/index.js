@@ -16,6 +16,8 @@ import FormItemSelect from './components/form-item-select'
 import Table from './components/table'
 import TableItem from './components/table-item'
 import TableItemState from './components/table-item-statu'
+import TableItemScope from './components/table-item-scope'
+import TableItemButton from './components/table-item-button'
 
 import 'element-ui/lib/theme-default/index.css'
 
@@ -38,6 +40,8 @@ const components = [
   Table,
   TableItem,
   TableItemState,
+  TableItemScope,
+  TableItemButton,
 ]
 
 const install = function (Vue, opts = {}) {
