@@ -132,10 +132,14 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          let _this  = this
           let apiUrl = this.apiUrlSubmit
           let postData = this.fromData
           let notify = this.$notify
-          this.$store.dispatch('getData',{ apiUrl, postData, notify})
+          let thenFunction = function(Response) {
+            _this.$store.dispatch('update')
+          }
+          this.$store.dispatch('getData',{ apiUrl, postData, notify, thenFunction})
         } else {
           console.log('error submit!! 请检查你的提交信息是否符合规则');
           return false;
