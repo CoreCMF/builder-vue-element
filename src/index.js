@@ -1,5 +1,7 @@
 import Index from './components/index'
 
+import DialogItem from './components/dialog-item'
+
 import Form from './components/form'
 import FormItem from './components/form-item'
 import FormItemText from './components/form-item-text'
@@ -23,6 +25,8 @@ import 'element-ui/lib/theme-default/index.css'
 
 const components = [
   Index,
+  
+  DialogItem,
 
   Form,
   FormItem,

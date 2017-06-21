@@ -22,6 +22,7 @@
         v-if="item.type == 'table'"
         />
     </el-col>
+    <bve-dialog-item/>
   </div>
 </template>
 
