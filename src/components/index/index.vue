@@ -44,9 +44,9 @@ export default {
       }catch(e){
         return {
           xs: 24,
-          sm: 12,
-          md: 8,
-          lg: 6
+          sm: 24,
+          md: 24,
+          lg: 24
         }
       }
     },
@@ -57,6 +57,9 @@ export default {
     },
     update() {
       return this.$store.state.update
+    },
+    apiUrl() {
+      return this.$route.meta.apiUrl
     }
   },
   created () {
@@ -77,7 +80,7 @@ export default {
      */
     getData() {
       let _this = this
-      let apiUrl = this.$route.meta.apiUrl
+      let apiUrl = this.apiUrl
       let postData = this.postData
       let thenFunction = function(Response) {
         _this.data = Response.data
