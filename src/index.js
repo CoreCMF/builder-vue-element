@@ -1,4 +1,5 @@
 import Index from './components/index'
+import ItemIndex from './components/item-index'
 
 import DialogItem from './components/dialog-item'
 
@@ -25,7 +26,8 @@ import 'element-ui/lib/theme-default/index.css'
 
 const components = [
   Index,
-  
+  ItemIndex,
+
   DialogItem,
 
   Form,
