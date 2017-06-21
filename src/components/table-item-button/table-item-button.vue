@@ -180,7 +180,7 @@ export default {
       switch (this.button.method) {
         case 'default':
           postData = {'id':this.id};        //发送数据ID
-          this.getData(postData)
+          this.$store.dispatch('dialogApiUrl',this.button.apiUrl)
           break;
         case 'resume':
           postData = this.changeDataState(this.id,1);//批量数据更改状态
