@@ -79,7 +79,7 @@ export default {
       let button
       switch(this.type) {
         case 'topButton':
-          // this.compileTopButton()
+          button = this.compileTopButton()
           break;
         case 'rightButton':
           button = this.compileRightButton()
@@ -115,6 +115,32 @@ export default {
     }
   },
   methods: {
+    /**
+       * [compileTopButton 编译表格顶部按钮]
+       */
+    compileTopButton(){
+      let button
+      let config = this.config;
+      let buttonProperty = this.buttonProperty;
+      switch(config.buttonType) {
+        case 'add':  // 新增按钮
+          button = Object.assign(buttonProperty.add,config);
+          break;
+        case 'resume':  // 启用按钮
+          button = Object.assign(buttonProperty.resume,config);
+          break;
+        case 'forbid':  // 禁用按钮
+          button = Object.assign(buttonProperty.forbid,config);
+          break;
+        case 'delete':  // 删除按钮
+          button = Object.assign(buttonProperty.delete,config);
+          break;
+        default:
+          button = Object.assign(buttonProperty.default,config);
+          break;
+      }
+      return button
+    },
     /**
      * [compileRightButton 编译表格右侧按钮]
      */
@@ -158,19 +184,19 @@ export default {
           break;
         case 'resume':
           postData = this.changeDataState(this.id,1);//批量数据更改状态
-          this.getData(postData)
+          this.httpNotify(postData)
           break;
         case 'forbid':
           postData = this.changeDataState(this.id,0);//批量数据更改状态
-          this.getData(postData)
+          this.httpNotify(postData)
           break;
         case 'display':
           postData = this.changeDataState(this.id,1);//批量数据更改状态
-          this.getData(postData)
+          this.httpNotify(postData)
           break;
         case 'hide':
           postData = this.changeDataState(this.id,2);//批量数据更改状态
-          this.getData(postData)
+          this.httpNotify(postData)
           break;
         case 'delete':
           postData = this.changeDataState(this.id,-1);//批量数据更改状态
@@ -179,10 +205,9 @@ export default {
             cancelButtonText: '取消',
             type: 'error'
           }).then(() => {
-            this.getData(postData)
+            this.httpNotify(postData)
           }).catch(() => {
-            this.$notify({
-              title: '操作取消',
+            this.$message({
               message: '已取消删除',
               type: 'info',
             });
@@ -191,14 +216,14 @@ export default {
         default:
       }
     },
-    getData(postData) {
+    httpNotify(postData) {
       let _this  = this
       let apiUrl = this.button.apiUrl
-      let notify = this.$notify
+      let message = this.$message
       let thenFunction = function(Response) {
         _this.$store.dispatch('update')
       }
-      this.$store.dispatch('getData',{ apiUrl, postData, notify, thenFunction})
+      this.$store.dispatch('getData',{ apiUrl, postData, message, thenFunction})
     },
     /**
      * [changeDataState 批量更改数据状态]
