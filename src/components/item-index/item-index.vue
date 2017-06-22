@@ -36,6 +36,7 @@ export default {
   },
   props: {
     apiUrl:{},
+    postData:{}
   },
   computed: {
     layout() {
@@ -52,7 +53,10 @@ export default {
         }
       }
     },
-    postData() {
+    currentPostData() {
+      if (this.postData) {
+        return this.postData
+      }
       return {
         tabIndex: this.tabIndex
       }
@@ -80,7 +84,7 @@ export default {
     getData() {
       let _this = this
       let apiUrl = this.apiUrl
-      let postData = this.postData
+      let postData = this.currentPostData
       let thenFunction = function(Response) {
         _this.data = Response.data
         _this.$emit('set-title', Response.data.title)//设置标题
