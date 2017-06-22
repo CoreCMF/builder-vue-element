@@ -179,8 +179,9 @@ export default {
       let postData
       switch (this.button.method) {
         case 'default':
+          let apiUrl = this.button.apiUrl
           postData = {'id':this.id};        //发送数据ID
-          this.$store.dispatch('dialogApiUrl',this.button.apiUrl)
+          this.$store.dispatch('dialog',{apiUrl, postData})
           break;
         case 'resume':
           postData = this.changeDataState(this.id,1);//批量数据更改状态
