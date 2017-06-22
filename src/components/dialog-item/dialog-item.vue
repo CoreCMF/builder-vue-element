@@ -8,6 +8,7 @@
     <bve-item-index
       v-if="dialogVisible"
       :apiUrl="currentApiUrl"
+      :postData="postData"
       @set-title="headerSetTitle"
     />
   </el-dialog>
@@ -26,6 +27,9 @@ export default {
   computed: {
     apiUrl() {
       return this.$store.state.dialog.apiUrl
+    },
+    postData() {
+      return this.$store.state.dialog.postData
     }
   },
   watch: {
@@ -46,7 +50,8 @@ export default {
      * [headerColse 关闭dialog时自动清空 apiurl]
      */
     headerColse() {
-      this.$store.dispatch('dialogApiUrl',null)
+      let apiUrl = null
+      this.$store.dispatch('dialog',{apiUrl})
     },
     headerSetTitle(title) {
       this.title = title
