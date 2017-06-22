@@ -26,7 +26,7 @@ export default {
   computed: {
     currentValue: {
       get() {
-          return this.value;
+        return this.value
       },
       set(newValue) {
         this.$emit('input', newValue)
