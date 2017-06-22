@@ -42,7 +42,7 @@ export default {
   computed: {
     currentValue: {
       get() {
-        if (this.value) {
+        if (this.value!=null) {
           return this.value.toString()
         }
         return
