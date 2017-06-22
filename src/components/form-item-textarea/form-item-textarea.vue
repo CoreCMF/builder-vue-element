@@ -33,7 +33,10 @@ export default {
   computed: {
     currentValue: {
       get() {
-          return this.value;
+        if (this.value!=null) {
+           return this.value.toString()
+        }
+        return
       },
       set(newValue) {
         this.$emit('input', newValue)
