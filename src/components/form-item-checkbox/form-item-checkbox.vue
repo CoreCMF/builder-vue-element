@@ -10,10 +10,7 @@
 export default {
   name: 'bve-form-item-checkbox',
   props: {
-    data: {
-        type: '',
-        default: ''
-    },
+    value:{},
     config: {
         type: Object,
         default: ''

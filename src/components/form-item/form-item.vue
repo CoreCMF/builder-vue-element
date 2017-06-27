@@ -2,6 +2,7 @@
   <el-form
     :model="fromData"
     ref="bvefrom"
+    :style="fromConfig.formStyle"
     :inline="fromConfig.inline"
     :label-position="fromConfig.labelPosition"
     :label-suffix="fromConfig.labelSuffix"
@@ -62,10 +63,25 @@
         :config="config"
         v-if="config.type == 'select'"
       />
+      <bve-form-item-html
+        :config="config"
+        v-if="config.type == 'html'"
+      />
     </template>
     <el-form-item>
-     <el-button type="primary" @click="submitForm('bvefrom')">提交</el-button>
-     <el-button @click="resetForm('bvefrom')">重置</el-button>
+     <el-button
+      type="primary"
+      @click="submitForm('bvefrom')"
+      :style="fromConfig.formSubmit.style"
+     >
+      {{ fromConfig.formSubmit.name }}
+     </el-button>
+     <el-button
+      @click="resetForm('bvefrom')"
+      :style="fromConfig.formReset.style"
+     >
+      {{ fromConfig.formReset.name }}
+     </el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -92,21 +108,43 @@ export default {
       return this.data.apiUrl.submit
     },
     fromConfig() {
-      let config = this.data.config;
-      if (config) {
-        return {
-          labelWidth: config.labelWidth,
-          inline: config.inline,
-          labelPosition: config.labelPosition,
-          labelSuffix: config.labelSuffix,
-        }
-      }
-      return {
+      let fromConfig = {
         labelWidth:'80px',
         inline:false,
         labelPosition:'right',
         labelSuffix:'',
+        formSubmit: {
+          name: '提交',
+          style: null
+        },
+        formReset: {
+          name: '提交',
+          style: null
+        },
       }
+      let config = this.data.config;
+      if (config.formStyle) {
+        fromConfig.formStyle = config.formStyle
+      }
+      if (config.labelWidth) {
+        fromConfig.labelWidth = config.labelWidth
+      }
+      if (config.inline) {
+        fromConfig.inline = config.inline
+      }
+      if (config.labelPosition) {
+        fromConfig.labelPosition = config.labelPosition
+      }
+      if (config.labelSuffix) {
+        fromConfig.labelSuffix = config.labelSuffix
+      }
+      if (config.formSubmit) {
+        fromConfig.formSubmit = config.formSubmit
+      }
+      if (config.formReset) {
+        fromConfig.formReset = config.formReset
+      }
+      return fromConfig
     }
   },
   watch: {
