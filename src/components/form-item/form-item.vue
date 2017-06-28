@@ -175,7 +175,7 @@ export default {
           let postData = this.fromData
           let message = this.$message
           let thenFunction = function(Response) {
-            _this.$store.dispatch('update')
+            _this.$store.dispatch('callbackData',Response.data)
           }
           this.$store.dispatch('getData',{ apiUrl, postData, message, thenFunction})
         } else {

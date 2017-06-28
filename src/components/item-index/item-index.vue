@@ -61,8 +61,8 @@ export default {
         tabIndex: this.tabIndex
       }
     },
-    update() {
-      return this.$store.state.update
+    callbackData() {
+      return this.$store.state.callbackData
     }
   },
   created () {
@@ -70,7 +70,7 @@ export default {
   },
   watch: {
     apiUrl: 'initData',
-    update: 'getData'
+    callbackData: 'getData'
   },
   methods: {
     initData() {
