@@ -94,7 +94,6 @@ export default {
       if (!this.config.class) { this.config.class = 'picture-uploader' }
       // 上传文件大小显示语言提示beging
       if (!this.config.maxSizeLang) { this.config.maxSizeLang = {} }
-      if (!this.config.maxSizeLang.title) { this.config.maxSizeLang.title = '文件过大' }
       if (!this.config.maxSizeLang.message) { this.config.maxSizeLang.message = '文件大小超过系统限制' }
       if (!this.config.maxSizeLang.type) { this.config.maxSizeLang.type = 'warning' }
       // 上传文件大小显示语言提示end
@@ -112,12 +111,10 @@ export default {
           this.currentValue = Response.uploadData.id;
           this.newImageUrl = URL.createObjectURL(file.raw);
         }
-        this.$notify({
-          title: Response.title,
+        this.$message({
           message: Response.message,
           type: Response.type,
-          offset:100
-        });
+        })
     },
     handleError(err, response, file){
           // console.log(err, response, file);
@@ -128,12 +125,10 @@ export default {
     beforeUpload(file){
       /* [if 判断是否符合上传大小] */
       if (this.config.maxSize<file.size) {
-          this.$notify({
-              title: this.config.maxSizeLang.title,
-              message: this.config.maxSizeLang.message,
-              type: this.config.maxSizeLang.type,
-              offset:100
-          });
+          this.$message({
+            message: this.config.maxSizeLang.message,
+            type: this.config.maxSizeLang.type,
+          })
           return false;
       }
     }

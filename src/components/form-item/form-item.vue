@@ -118,7 +118,7 @@ export default {
           style: null
         },
         formReset: {
-          name: '提交',
+          name: '重置 ',
           style: null
         },
       }
