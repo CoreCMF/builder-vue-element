@@ -83,6 +83,9 @@ export default {
       return this.config.stylePicture
     },
     headers() {
+      if (window.axios.defaults.headers.common) {
+        return window.axios.defaults.headers.common
+      }
       return
     }
   },
