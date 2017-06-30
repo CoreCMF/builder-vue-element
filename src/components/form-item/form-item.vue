@@ -2,6 +2,7 @@
   <el-form
     :model="fromData"
     ref="bvefrom"
+    :rules="rules"
     :style="fromConfig.formStyle"
     :inline="fromConfig.inline"
     :label-position="fromConfig.labelPosition"
@@ -145,6 +146,9 @@ export default {
         fromConfig.formReset = config.formReset
       }
       return fromConfig
+    },
+    rules() {
+      return this.data.rules
     }
   },
   watch: {
