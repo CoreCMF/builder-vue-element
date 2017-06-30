@@ -30,10 +30,14 @@ export default {
     },
     postData() {
       return this.$store.state.dialog.postData
-    }
+    },
+    callbackData() {
+      return this.$store.state.callbackData
+    },
   },
   watch: {
     apiUrl:'onVisible',
+    callbackData: 'thenFunction'
   },
   methods: {
     /**
@@ -55,6 +59,9 @@ export default {
     },
     headerSetTitle(title) {
       this.title = title
+    },
+    thenFunction() {
+      this.dialogVisible = false
     }
   }
 }
