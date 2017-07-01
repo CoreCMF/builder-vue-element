@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  name: 'bve-item-index',
+  name: 'bve-index-item',
   data() {
     return {
       data: null,

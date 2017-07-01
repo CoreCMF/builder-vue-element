@@ -1,7 +1,8 @@
 import Index from './components/index'
-import ItemIndex from './components/item-index'
+import IndexItem from './components/index-item'
 
 import DialogItem from './components/dialog-item'
+import PaginationItem from './components/pagination-item'
 
 import Form from './components/form'
 import FormItem from './components/form-item'
@@ -27,9 +28,10 @@ import 'element-ui/lib/theme-default/index.css'
 
 const components = [
   Index,
-  ItemIndex,
+  IndexItem,
 
   DialogItem,
+  PaginationItem,
 
   Form,
   FormItem,

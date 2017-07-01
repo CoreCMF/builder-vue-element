@@ -67,12 +67,15 @@
         </el-table-column>
       </template>
     </el-table>
+    <div class="table-bottom">
+      <bve-pagination-item v-model="pagination"/>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'bve-table-item',
+  name: 'bve-item-table',
   props: {
     data: {
       type: Object,
@@ -112,6 +115,12 @@ export default {
       }
       return []
     },
+    pagination() {
+      if (this.data.pagination) {
+        return this.data.pagination
+      }
+      return null
+    }
   },
   methods: {
     handleSelectionChange(val) {

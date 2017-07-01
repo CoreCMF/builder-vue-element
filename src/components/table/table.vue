@@ -6,10 +6,10 @@
       v-model="index"
     >
       <el-tab-pane v-for="(tab,key) in data.tabs" :key="key" :name="key.toString()" :label="tab">
-        <bve-table-item v-if="index == key" :data="data"/>
+        <bve-item-table v-if="index == key" :data="data"/>
       </el-tab-pane>
     </el-tabs>
-    <bve-table-item :data="data" v-else/>
+    <bve-item-table :data="data" v-else/>
   </div>
 </template>
 

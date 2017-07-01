@@ -1,6 +1,6 @@
 <template>
   <div class="flex-container">
-    <bve-item-index
+    <bve-index-item
       :apiUrl="apiUrl"
       @set-title="headerSetTitle"
     />
