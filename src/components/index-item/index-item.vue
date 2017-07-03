@@ -57,9 +57,11 @@ export default {
       if (this.postData) {
         return this.postData
       }
-      return {
+      let postData = {
         tabIndex: this.tabIndex
       }
+      Object.assign(postData,this.$store.state.postData)
+      return postData
     },
     callbackData() {
       return this.$store.state.callbackData
@@ -70,7 +72,14 @@ export default {
   },
   watch: {
     apiUrl: 'initData',
-    callbackData: 'getData'
+    callbackData:{
+      handler: 'getData',
+      deep: true
+    },
+    currentPostData:{
+      handler: 'getData',
+      deep: true
+    }
   },
   methods: {
     initData() {
@@ -95,7 +104,6 @@ export default {
     },
     handleTabsClick(tab, event) {
       this.tabIndex = tab.index
-      this.getData()
     }
   }
 }
