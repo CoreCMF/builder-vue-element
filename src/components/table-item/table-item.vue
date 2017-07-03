@@ -130,5 +130,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
+  .table-bottom{
+    padding-top:15px;
+  }
 </style>
