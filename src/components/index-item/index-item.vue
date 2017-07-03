@@ -73,27 +73,30 @@ export default {
   watch: {
     apiUrl: 'initData',
     callbackData:{
-      handler: 'getData',
+      handler: function (val, oldVal) {
+        this.getData(this.currentPostData)
+      },
       deep: true
     },
     currentPostData:{
-      handler: 'getData',
+      handler: function (val, oldVal) {
+        this.getData(val)
+      },
       deep: true
     }
   },
   methods: {
     initData() {
       this.data = null
-      this.tabIndex = null
-      this.getData()
+      let postData = null
+      this.getData(postData)
     },
     /**
      * [getData 获取api通信数据]
      */
-    getData() {
+    getData(postData) {
       let _this = this
       let apiUrl = this.apiUrl
-      let postData = this.currentPostData
       let thenFunction = function(Response) {
         _this.data = Response.data
         _this.$emit('set-title', Response.data.title)//设置标题
@@ -103,6 +106,7 @@ export default {
       this.$store.dispatch('getData',{ apiUrl, postData, thenFunction, catchFunction}) //获取当前路由数据
     },
     handleTabsClick(tab, event) {
+      this.$store.dispatch('initPostData')
       this.tabIndex = tab.index
     }
   }
