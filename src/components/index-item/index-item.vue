@@ -57,10 +57,16 @@ export default {
       if (this.postData) {
         return this.postData
       }
+      // 设定tabIndex
       let postData = {
         tabIndex: this.tabIndex
       }
+      //合并 postData
       Object.assign(postData,this.$store.state.postData)
+      //如果tabIndex为定义删除tabIndex
+      if (!this.tabIndex) {
+        this.$delete(postData,'tabIndex')
+      }
       return postData
     },
     callbackData() {
@@ -107,7 +113,7 @@ export default {
     },
     handleTabsClick(tab, event) {
       this.$store.dispatch('initPostData')
-      this.tabIndex = tab.index
+      this.tabIndex = tab.name
     }
   }
 }
