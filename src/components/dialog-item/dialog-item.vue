@@ -5,7 +5,7 @@
    v-model="dialogVisible"
    @close="headerColse"
   >
-    <bve-item-index
+    <bve-index-item
       v-if="dialogVisible"
       :apiUrl="currentApiUrl"
       :postData="postData"
