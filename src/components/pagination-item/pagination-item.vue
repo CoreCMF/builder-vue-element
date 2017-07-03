@@ -37,15 +37,13 @@ export default {
     * [handleSizeChange 设置每页显示数量并获取数据]
     */
     handleSizeChange(val){
-      this.$store.state.postData.pageSize = val;
-      this.$store.dispatch('getCurrentData',this.postData)//根据pageSize获取数据
+      this.$store.dispatch('setPostData',{key:'pageSize', value:val})
     },
     /**
     * [handleCurrentChange 根据页码获取页面数据]
     */
     handleCurrentChange(val) {
-      this.$store.state.postData.page = val;
-      this.$store.dispatch('getCurrentData',this.postData)//根据page获取数据
+      this.$store.dispatch('setPostData',{key:'page', value:val})
     },
 	}
 }
