@@ -1,13 +1,19 @@
 <template>
   <div class="">
-    <bve-table-item-button
-      v-for="(config,key) in topButton"
-      :key="key"
-      :config="config"
-      :multipleSelection="multipleSelection"
-      type="topButton"
-    >
-    </bve-table-item-button>
+    <el-row>
+      <el-col :md="16">
+        <bve-table-item-button
+          v-for="(config,key) in topButton"
+          :key="key"
+          :config="config"
+          :multipleSelection="multipleSelection"
+          type="topButton"
+        />
+      </el-col>
+      <el-col :md="8">
+        <bve-table-item-search :config="search"/>
+      </el-col>
+    </el-row>
     <el-table
       :data="tableData"
       :stripe="stripe"
@@ -120,6 +126,12 @@ export default {
         return this.data.pagination
       }
       return null
+    },
+    search() {
+      if (this.data.search) {
+        return this.data.search
+      }
+      return null
     }
   },
   methods: {
@@ -130,6 +142,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+  .table-top{
+    padding-bottom:15px;
+  }
   .table-bottom{
     padding-top:15px;
   }
