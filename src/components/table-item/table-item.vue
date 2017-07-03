@@ -58,6 +58,10 @@
               v-if="column.type=='status'"
               v-model="scope.row[column.prop]"
             />
+            <bve-table-item-icon
+              v-if="column.type=='icon'"
+              v-model="scope.row[column.prop]"
+            />
             <bve-table-item-button
               v-if="column.type=='btn'"
               v-for="(config,key) in rightButton"
@@ -67,8 +71,7 @@
               :multipleSelection="multipleSelection"
               size="mini"
               type="rightButton"
-            >
-            </bve-table-item-button>
+            />
           </template>
         </el-table-column>
       </template>

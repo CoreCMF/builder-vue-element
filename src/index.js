@@ -24,6 +24,7 @@ import TableItemState from './components/table-item-statu'
 import TableItemScope from './components/table-item-scope'
 import TableItemButton from './components/table-item-button'
 import TableItemSearch from './components/table-item-search'
+import TableItemIcon from './components/table-item-icon'
 
 import 'element-ui/lib/theme-default/index.css'
 
@@ -54,6 +55,7 @@ const components = [
   TableItemScope,
   TableItemButton,
   TableItemSearch,
+  TableItemIcon,
 ]
 
 const install = function (Vue, opts = {}) {
