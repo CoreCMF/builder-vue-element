@@ -1,13 +1,15 @@
 <template>
-<el-steps
-  :space="space"
-  :active="active"
-  :finish-status="finishStatus"
-  :align-center="alignCenter"
-  :center="center"
->
-  <el-step v-for="(title,key) in titles" :title="title" :key="key"></el-step>
-</el-steps>
+  <el-form-item :label="config.label" :prop="config.name">
+    <el-steps
+      :space="space"
+      :active="active"
+      :finish-status="finishStatus"
+      :align-center="alignCenter"
+      :center="center"
+    >
+      <el-step v-for="(title,key) in titles" :title="title" :key="key"></el-step>
+    </el-steps>
+  </el-form-item>
 </template>
 
 <script>
