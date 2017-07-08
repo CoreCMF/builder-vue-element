@@ -68,6 +68,11 @@
         :config="config"
         v-if="config.type == 'html'"
       />
+      <bve-form-item-steps
+        v-model="fromData[config.name]"
+        :config="config"
+        v-if="config.type == 'steps'"
+      />
     </template>
     <el-form-item>
      <el-button
