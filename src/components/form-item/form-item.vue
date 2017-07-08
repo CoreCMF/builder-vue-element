@@ -73,6 +73,10 @@
         :config="config"
         v-if="config.type == 'steps'"
       />
+      <bve-form-item-scrollbar
+        :config="config"
+        v-if="config.type == 'scrollbar'"
+      />
     </template>
     <el-form-item>
      <el-button

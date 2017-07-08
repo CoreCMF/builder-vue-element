@@ -18,6 +18,7 @@ import FormItemPicture from './components/form-item-picture'
 import FormItemSelect from './components/form-item-select'
 import FFormItemHtml from './components/form-item-html'
 import FormItemSteps from './components/form-item-steps'
+import FormItemScrollbar from './components/form-item-scrollbar'
 
 import Table from './components/table'
 import TableItem from './components/table-item'
@@ -50,6 +51,7 @@ const components = [
   FormItemSelect,
   FFormItemHtml,
   FormItemSteps,
+  FormItemScrollbar,
 
   Table,
   TableItem,
