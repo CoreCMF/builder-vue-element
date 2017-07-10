@@ -32,6 +32,7 @@
       <bve-form-item-checkbox
         v-model="fromData[config.name]"
         :config="config"
+        @checkbox-event="handleCheckedEvent"
         v-if="config.type == 'checkbox'"
       />
       <bve-form-item-switch
@@ -53,11 +54,6 @@
         v-model="fromData[config.name]"
         :config="config"
         v-if="config.type == 'picture'"
-      />
-      <bve-form-item-checkbox
-        v-model="fromData[config.name]"
-        :config="config"
-        v-if="config.type == 'checkbox'"
       />
       <bve-form-item-select
         v-model="fromData[config.name]"
@@ -83,12 +79,14 @@
       type="primary"
       @click="submitForm('bvefrom')"
       :style="fromConfig.formSubmit.style"
+      :disabled="fromConfig.formSubmit.disabled"
      >
       {{ fromConfig.formSubmit.name }}
      </el-button>
      <el-button
       @click="resetForm('bvefrom')"
       :style="fromConfig.formReset.style"
+      :disabled="fromConfig.formReset.disabled"
      >
       {{ fromConfig.formReset.name }}
      </el-button>
@@ -111,6 +109,10 @@ export default {
   data() {
     return {
       fromData:{},
+      disabled:{
+        submitButton:false,
+        resetButton:false
+      }
     };
   },
   computed: {
@@ -202,7 +204,27 @@ export default {
      */
     resetForm(formName) {
       this.$refs[formName].resetFields();
-    }
+    },
+    handleCheckedEvent(event, checked){
+      let disabled = checked? false: true
+      for (var key in event) {
+        switch (event[key]) {
+          case 'submitButton':
+            this.fromConfig.formSubmit.disabled = disabled
+            break;
+          case 'resetButton':
+            this.fromConfig.formReset.disabled = disabled
+            break;
+          default:
+            let data = this.data.data
+            for (var k in data) {
+              if (data[k].name == event[key]) {
+                data[k].disabled = disabled
+              }
+            }
+        }
+      }
+    },
   }
 }
 </script>

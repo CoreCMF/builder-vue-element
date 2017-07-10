@@ -122,14 +122,30 @@ store.state.builderIndex = { template: '<bve-index/>' }
 
 }
 ```
-#### items table Object
+#### items-form-data-checkbox
 | 参数      | 说明          | 类型      | 可选值                           | 默认值  | 必填值 | 飞机票 |
-|---------- |-------------- |---------- |--------------------------------  |-------- |-------- |-------- |
-| apiUrl | form项目使用到的通信url 。| Object | — | — | — |
-| config | form项目配置参数 。| Object | — | — | — |
-| data   | form项目渲染数据| array | — | — | — | — |
-| apiUrl | form项目使用到的通信结构url定义于此处 。| Object | — | — | — | — |
-| apiUrl | form项目使用到的通信结构url定义于此处 。| Object | — | — | — | — |
+|---------- |-------------- |---------- |--------------------------------  |-------- |-------- |-------- |-------- |
+| options | 选项 | Object | — | — | 对象名必填 |[checkbox-options](#items-form-data-checkbox-options) |
 ```
+{
+  'userAgreement': {
+    name: "我同意相关用户协议",
+    eventEnable: ["submitButton"],
+    eventDisable: ["resetButton","password"]
+  },
+}
+```
+#### items-form-data-checkbox-options
+| 参数      | 说明          | 类型      | 可选值                           | 默认值  | 必填值 | 飞机票 |
+|---------- |-------------- |---------- |--------------------------------  |-------- |-------- |-------- |-------- |
+| name | checkbox标题名 | string | — | — | — | — |
+| eventEnable | 勾选后启用的form item name | Array | resetButton/submitButton等。还包括自动移字段 | — | — | — |
+| eventDisable | 勾选后禁用的form item name | Array | resetButton/submitButton等。还包括自动移字段 | — | — | — |
+```
+{
+  name: "我同意相关用户协议",
+  eventEnable: ["submitButton","resetButton","username"],
+  eventDisable: ["resetButton","password"]
+},
 ```
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
