@@ -1,7 +1,14 @@
 <template>
   <el-form-item :label="config.label" :prop="config.name">
     <el-checkbox-group v-model="currentValue">
-      <el-checkbox v-for="(option,key) in config.options" :label="option.id" :key="key">{{ option.name }}</el-checkbox>
+      <el-checkbox
+        v-for="(option,key,index) in config.options"
+        :label="key"
+        :key="key"
+        @change="handleChange"
+      >
+      {{ option.name }}
+    </el-checkbox>
     </el-checkbox-group>
   </el-form-item>
 </template>
@@ -19,10 +26,24 @@ export default {
   computed: {
     currentValue: {
       get() {
-          return this.value;
+        return this.value? this.value: []
       },
       set(newValue) {
         this.$emit('input', newValue)
+      }
+    }
+  },
+  methods: {
+    handleChange(value) {
+      let checked = value.target.checked
+      let targetValue = value.target.value
+      let eventEnable = this.config.options[targetValue].eventEnable
+      let eventDisable = this.config.options[targetValue].eventDisable
+      if (eventEnable) {
+        this.$emit('checkbox-event',eventEnable,checked)
+      }
+      if (eventDisable) {
+        this.$emit('checkbox-event',eventDisable,!checked)
       }
     }
   }
