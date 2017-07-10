@@ -160,6 +160,10 @@ export default {
     },
     rules() {
       return this.data.rules
+    },
+    //增加提交后刷新控制
+    submitRefresh(){
+       empty(config.submitRefresh)? true: config.submitRefresh
     }
   },
   watch: {
@@ -190,7 +194,9 @@ export default {
           let postData = this.fromData
           let message = this.$message
           let thenFunction = function(Response) {
-            _this.$store.dispatch('callbackData',Response.data)
+            if(_this.submitRefresh){
+                _this.$store.dispatch('callbackData',Response.data)
+            }
           }
           this.$store.dispatch('getData',{ apiUrl, postData, message, thenFunction})
         } else {

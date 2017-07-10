@@ -90,6 +90,10 @@ store.state.builderIndex = { template: '<bve-index/>' }
 | labelPosition | 表单域标签的位置 。| string | right/left/top | right | - | - |
 | labelSuffix | 表单域标签的后缀 。| string | — | — | - | - |
 | formStyle | 自定义form外部div样式 。| Object | — | — | - | - |
+| formSubmit | 自定义form提交按钮 。| Object | — | — | - | [formSubmit](#items-form-data-formSubmit) |
+| formReset | 自定义form刷新按钮 。| Object | — | — | - | [formReset](#items-form-data-formReset) |
+| submitRefresh | 自定义form提交后禁止刷新页面 。| Object | — | — | - | [ - |
+
 ```
 {
   labelWidth:"100px",
@@ -99,6 +103,31 @@ store.state.builderIndex = { template: '<bve-index/>' }
   formStyle: {
     max-width:'600px'
   }
+}
+```
+
+#### items form data formReset
+
+| 参数      | 说明          | 类型      | 可选值                           | 默认值  | 必填值 | 飞机票 |
+|---------- |-------------- |---------- |--------------------------------  |-------- |-------- |-------- |
+| label | 标签文本 。| string | — | — | 是 | - |
+
+```
+{
+
+
+}
+```
+#### items form data formSubmit
+
+| 参数      | 说明          | 类型      | 可选值                           | 默认值  | 必填值 | 飞机票 |
+|---------- |-------------- |---------- |--------------------------------  |-------- |-------- |-------- |
+| label | 标签文本 。| string | — | — | 是 | - |
+
+```
+{
+
+
 }
 ```
 #### items form data
