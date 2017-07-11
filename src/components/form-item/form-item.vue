@@ -193,18 +193,13 @@ export default {
           let apiUrl = this.apiUrlSubmit
           let postData = this.fromData
           let message = this.$message
-          if (!this.submitRefresh) {
-            message = null
-          }
           let thenFunction = function(Response) {
-            if(_this.submitRefresh){
-                _this.$store.dispatch('callbackData',Response.data)
-            }
+              _this.$store.dispatch('callbackData',Response.data)
           }
           this.$store.dispatch('getData',{ apiUrl, postData, message, thenFunction})
         } else {
           console.log('error submit!! 请检查你的提交信息是否符合规则');
-          return false;
+          return false
         }
       });
     },
