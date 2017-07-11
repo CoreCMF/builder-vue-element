@@ -27,7 +27,7 @@ store.state.builderIndex = { template: '<bve-index/>' }
 | 参数      | 说明          | 类型      | 可选值                           | 默认值  | 必填值 | 飞机票 |
 |---------- |-------------- |---------- |--------------------------------  |-------- |-------- |-------- |
 | items | 页面显示项目(可以是form、table等数据对象) 。| array | — | — | 是 | [formObject](#items-form-object) [tableObject](#items-table-object) |
-| config | 配置参数(layout 布局参数参考饿了么框架布局)  | Object | — | — | — | - |
+| config | 配置参数  | Object | — | — | — | [config](#apiUrl-config) |
 | title | 页面标题  | string | — | — | — | 是 |
 ```
 {
@@ -45,6 +45,27 @@ store.state.builderIndex = { template: '<bve-index/>' }
   }
   'title': '页面标题'
 }
+```
+#### apiUrl config
+| 参数      | 说明          | 类型      | 可选值                           | 默认值  | 必填值 | 飞机票 |
+|---------- |-------------- |---------- |--------------------------------  |-------- |-------- |-------- |
+| layout | layout 布局参数参考饿了么框架布局 。| Object | — | {
+  'xs': 24,
+  'sm': 24,
+  'md': 24,
+  'lg': 24
+} | — | — |
+| refresh | 请求数据后自动重新获取数据(false关闭是停止自动刷新 使用请求返回数据渲染页面) | boolean | — | — | true | — |
+```
+{
+  'config':{
+    'layout':{
+      'xs': 24,
+      'sm': 12,
+      'md': 8,
+      'lg': 6
+    },
+    'refresh':fasle
 ```
 #### items form Object
 | 参数      | 说明          | 类型      | 可选值                           | 默认值  | 必填值 | 飞机票 |
