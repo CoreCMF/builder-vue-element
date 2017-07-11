@@ -40,17 +40,11 @@ export default {
   },
   computed: {
     layout() {
-      try{
-        if (this.data.config.layout) {
-          return this.data.config.layout
-        }
-      }catch(e){
-        return {
-          xs: 24,
-          sm: 24,
-          md: 24,
-          lg: 24
-        }
+      return this.data.config.layout? this.data.config.layout: {
+        xs: 24,
+        sm: 24,
+        md: 24,
+        lg: 24
       }
     },
     currentPostData() {
