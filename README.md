@@ -92,7 +92,7 @@ store.state.builderIndex = { template: '<bve-index/>' }
 | formStyle | 自定义form外部div样式 。| Object | — | — | - | - |
 | formSubmit | 自定义form提交按钮 。| Object | — | — | - | [formSubmit](#items-form-data-formSubmit) |
 | formReset | 自定义form刷新按钮 。| Object | — | — | - | [formReset](#items-form-data-formReset) |
-| submitRefresh | 自定义form提交后禁止刷新页面 。| Object | — | — | - | [ - |
+| submitRefresh | 自定义form提交后禁止刷新页面（false后渲染返回数据） 。| Boolean | — | — | - | [ - |
 
 ```
 {

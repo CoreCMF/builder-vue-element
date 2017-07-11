@@ -163,7 +163,7 @@ export default {
     },
     //增加提交后刷新控制
     submitRefresh(){
-       empty(config.submitRefresh)? true: config.submitRefresh
+      return !this.data.config.submitRefresh? this.data.config.submitRefresh: true
     }
   },
   watch: {
@@ -193,6 +193,9 @@ export default {
           let apiUrl = this.apiUrlSubmit
           let postData = this.fromData
           let message = this.$message
+          if (!this.submitRefresh) {
+            message = null
+          }
           let thenFunction = function(Response) {
             if(_this.submitRefresh){
                 _this.$store.dispatch('callbackData',Response.data)
