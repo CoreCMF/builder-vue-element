@@ -40,12 +40,16 @@ export default {
   },
   computed: {
     layout() {
+      this.data.config = !this.data.config? [] : this.data.config
       return this.data.config.layout? this.data.config.layout: {
         xs: 24,
         sm: 24,
         md: 24,
         lg: 24
       }
+    },
+    refresh() {
+      return (this.data.config.refresh!=null)? this.data.config.refresh: true
     },
     currentPostData() {
       if (this.postData) {
@@ -74,7 +78,8 @@ export default {
     apiUrl: 'initData',
     callbackData:{
       handler: function (val, oldVal) {
-        this.getData(this.currentPostData)
+        this.refresh? this.getData(this.currentPostData): this.setData(val)
+
       },
       deep: true
     },
@@ -98,7 +103,7 @@ export default {
       let _this = this
       let apiUrl = this.apiUrl
       let thenFunction = function(Response) {
-        _this.data = Response.data
+        _this.setData(Response.data)
         _this.$emit('set-title', Response.data.title)//设置标题
       }
       let catchFunction = function(Error){
@@ -108,6 +113,10 @@ export default {
     handleTabsClick(tab, event) {
       this.$store.dispatch('initPostData')
       this.tabIndex = tab.name
+    },
+    //设置页面data数据
+    setData(data){
+      this.data = data
     }
   }
 }
