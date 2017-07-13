@@ -76,6 +76,16 @@
     </template>
     <el-form-item>
      <el-button
+      v-if="!fromConfig.formPrevious.hidden"
+      type="primary"
+      @click="submitForm('bvefrom',fromConfig.formPrevious.value)"
+      :style="fromConfig.formPrevious.style"
+      :disabled="fromConfig.formPrevious.disabled"
+     >
+      {{ fromConfig.formPrevious.name }}
+     </el-button>
+     <el-button
+      v-if="!fromConfig.formSubmit.hidden"
       type="primary"
       @click="submitForm('bvefrom')"
       :style="fromConfig.formSubmit.style"
@@ -84,6 +94,7 @@
       {{ fromConfig.formSubmit.name }}
      </el-button>
      <el-button
+      v-if="!fromConfig.formReset.hidden"
       @click="resetForm('bvefrom')"
       :style="fromConfig.formReset.style"
       :disabled="fromConfig.formReset.disabled"
@@ -109,9 +120,30 @@ export default {
   data() {
     return {
       fromData:{},
-      disabled:{
-        submitButton:false,
-        resetButton:false
+      config: {
+        labelWidth:'80px',
+        inline:false,
+        labelPosition:'right',
+        labelSuffix:'',
+        formPrevious:{
+          name: '上一步 ',
+          style: null,
+          value:0,
+          hidden: true,
+          disabled:false
+        },
+        formSubmit: {
+          name: '提交',
+          style: null,
+          hidden: false,
+          disabled:false
+        },
+        formReset: {
+          name: '重置 ',
+          style: null,
+          hidden: false,
+          disabled:false
+        },
       }
     };
   },
@@ -120,51 +152,12 @@ export default {
       return this.data.apiUrl.submit
     },
     fromConfig() {
-      let fromConfig = {
-        labelWidth:'80px',
-        inline:false,
-        labelPosition:'right',
-        labelSuffix:'',
-        formSubmit: {
-          name: '提交',
-          style: null
-        },
-        formReset: {
-          name: '重置 ',
-          style: null
-        },
-      }
-      let config = this.data.config;
-      if (config.formStyle) {
-        fromConfig.formStyle = config.formStyle
-      }
-      if (config.labelWidth) {
-        fromConfig.labelWidth = config.labelWidth
-      }
-      if (config.inline) {
-        fromConfig.inline = config.inline
-      }
-      if (config.labelPosition) {
-        fromConfig.labelPosition = config.labelPosition
-      }
-      if (config.labelSuffix) {
-        fromConfig.labelSuffix = config.labelSuffix
-      }
-      if (config.formSubmit) {
-        fromConfig.formSubmit = config.formSubmit
-      }
-      if (config.formReset) {
-        fromConfig.formReset = config.formReset
-      }
-      return fromConfig
+      Object.assign(this.config,this.data.config)
+      return this.config
     },
     rules() {
       return this.data.rules
     },
-    //增加提交后刷新控制
-    submitRefresh(){
-      return !this.data.config.submitRefresh? this.data.config.submitRefresh: true
-    }
   },
   watch: {
     data:'initData'
@@ -185,8 +178,10 @@ export default {
     },
     /**
      * [submitForm 提交数据]
+     * @param  {[type]} formName [description]
+     * @param  {[type]} steps    [下一步的隐藏item name]
      */
-    submitForm(formName) {
+    submitForm(formName,steps=0) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           let _this  = this
@@ -195,6 +190,9 @@ export default {
           let message = this.$message
           let thenFunction = function(Response) {
               _this.$store.dispatch('callbackData',Response.data)
+          }
+          if(steps){
+            postData[steps] = postData[steps]-2
           }
           this.$store.dispatch('getData',{ apiUrl, postData, message, thenFunction})
         } else {
@@ -214,10 +212,10 @@ export default {
       for (var key in event) {
         switch (event[key]) {
           case 'submitButton':
-            this.fromConfig.formSubmit.disabled = disabled
+            this.config.formSubmit.disabled = disabled
             break;
           case 'resetButton':
-            this.fromConfig.formReset.disabled = disabled
+            this.config.formReset.disabled = disabled
             break;
           default:
             let data = this.data.data
