@@ -73,6 +73,11 @@
         :config="config"
         v-if="config.type == 'scrollbar'"
       />
+      <bve-form-item-alert
+        v-model="fromData[config.name]"
+        :config="config"
+        v-if="config.type == 'alert'"
+      />
     </template>
     <el-form-item>
      <el-button

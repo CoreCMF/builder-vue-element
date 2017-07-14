@@ -2,7 +2,7 @@
   <el-form-item :label="config.label" :prop="config.name">
     <el-steps
       :space="space"
-      :active="active"
+      :active="currentValue"
       :finish-status="finishStatus"
       :align-center="alignCenter"
       :center="center"
@@ -25,7 +25,7 @@ export default {
   computed: {
     currentValue: {
       get() {
-        return this.value.toString()
+        return this.value
       },
       set(newValue) {
         this.$emit('input', newValue)
@@ -42,9 +42,6 @@ export default {
     },
     finishStatus() {
       return (this.config.finishStatus!=null)? this.config.finishStatus: 'success'
-    },
-    active() {
-      return (this.config.active!=null)? this.config.active: 0
     },
     space() {
       return (this.config.space!=null)? this.config.space: null

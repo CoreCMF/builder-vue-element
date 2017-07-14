@@ -19,6 +19,7 @@ import FormItemSelect from './components/form-item-select'
 import FFormItemHtml from './components/form-item-html'
 import FormItemSteps from './components/form-item-steps'
 import FormItemScrollbar from './components/form-item-scrollbar'
+import FormItemAlert from './components/form-item-alert'
 
 import Table from './components/table'
 import TableItem from './components/table-item'
@@ -52,6 +53,7 @@ const components = [
   FFormItemHtml,
   FormItemSteps,
   FormItemScrollbar,
+  FormItemAlert,
 
   Table,
   TableItem,
