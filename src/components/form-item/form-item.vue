@@ -79,11 +79,11 @@
         v-if="config.type == 'alert'"
       />
     </template>
-    <el-form-item>
+    <div class="form-button">
      <el-button
       v-if="!fromConfig.formPrevious.hidden"
       type="primary"
-      @click="submitForm('bvefrom',fromConfig.formPrevious.value)"
+      @click="submitForm('bvefrom',fromConfig.formPrevious.steps,'previous')"
       :style="fromConfig.formPrevious.style"
       :disabled="fromConfig.formPrevious.disabled"
      >
@@ -92,7 +92,7 @@
      <el-button
       v-if="!fromConfig.formSubmit.hidden"
       type="primary"
-      @click="submitForm('bvefrom')"
+      @click="submitForm('bvefrom',fromConfig.formSubmit.steps,'next')"
       :style="fromConfig.formSubmit.style"
       :disabled="fromConfig.formSubmit.disabled"
      >
@@ -106,7 +106,7 @@
      >
       {{ fromConfig.formReset.name }}
      </el-button>
-    </el-form-item>
+   </div>
   </el-form>
 </template>
 
@@ -186,7 +186,7 @@ export default {
      * @param  {[type]} formName [description]
      * @param  {[type]} steps    [下一步的隐藏item name]
      */
-    submitForm(formName,steps=0) {
+    submitForm(formName,stepsName,steps) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           let _this  = this
@@ -196,8 +196,13 @@ export default {
           let thenFunction = function(Response) {
               _this.$store.dispatch('callbackData',Response.data)
           }
-          if(steps){
-            postData[steps] = postData[steps]-2
+          if(stepsName){
+            if (steps == 'previous') {
+              postData[stepsName] = postData[stepsName]-1
+            }
+            if (steps == 'next') {
+              postData[stepsName] = postData[stepsName]+1
+            }
           }
           this.$store.dispatch('getData',{ apiUrl, postData, message, thenFunction})
         } else {
@@ -236,5 +241,4 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
 </style>

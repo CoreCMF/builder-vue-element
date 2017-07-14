@@ -1,5 +1,5 @@
 <template>
-  <el-form-item :label="config.label" :prop="config.name">
+  <div class="steps">
     <el-steps
       :space="space"
       :active="currentValue"
@@ -9,7 +9,7 @@
     >
       <el-step v-for="(title,key) in titles" :title="title" :key="key"></el-step>
     </el-steps>
-  </el-form-item>
+  </div>
 </template>
 
 <script>
@@ -50,4 +50,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+  .steps{
+    margin-bottom: 22px;
+  }
 </style>
