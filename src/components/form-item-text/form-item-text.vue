@@ -16,6 +16,7 @@
       :autofocus="config.autofocus"
       :form="config.form"
       v-model="currentValue"
+      :style="style"
     />
   </el-form-item>
 </template>
@@ -41,6 +42,9 @@ export default {
       set(newValue) {
         this.$emit('input', newValue)
       }
+    },
+    style() {
+      return this.config.style
     }
   }
 }
