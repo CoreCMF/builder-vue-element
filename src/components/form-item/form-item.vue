@@ -78,6 +78,11 @@
         :config="config"
         v-if="config.type == 'alert'"
       />
+      <bve-form-item-radio
+        v-model="fromData[config.name]"
+        :config="config"
+        v-if="config.type == 'radio'"
+      />
     </template>
     <div class="form-button">
      <el-button

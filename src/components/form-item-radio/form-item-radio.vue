@@ -1,7 +1,7 @@
 <template>
   <el-form-item :label="config.label" :prop="config.name">
     <el-radio-group v-model="currentValue">
-      <el-radio v-for="(option,key) in config.options" :label="option.id" :key="key">{{ option.name }}</el-radio>
+      <el-radio v-for="(option,key) in config.options" :label="key" :key="key">{{ option }}</el-radio>
     </el-radio-group>
   </el-form-item>
 </template>

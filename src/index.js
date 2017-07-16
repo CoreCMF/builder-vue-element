@@ -20,6 +20,7 @@ import FFormItemHtml from './components/form-item-html'
 import FormItemSteps from './components/form-item-steps'
 import FormItemScrollbar from './components/form-item-scrollbar'
 import FormItemAlert from './components/form-item-alert'
+import FormItemRadio from './components/form-item-radio'
 
 import Table from './components/table'
 import TableItem from './components/table-item'
@@ -54,6 +55,7 @@ const components = [
   FormItemSteps,
   FormItemScrollbar,
   FormItemAlert,
+  FormItemRadio,
 
   Table,
   TableItem,
