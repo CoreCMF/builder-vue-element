@@ -166,7 +166,18 @@ export default {
       return this.config
     },
     rules() {
-      return this.data.rules
+      let rules = this.data.rules;
+      if (rules!==undefined) {
+          for (var name in rules) {
+              for (var key in rules[name]) {
+                  let validator = rules[name][key].validator
+                  if (validator!==undefined) {
+                      rules[name][key].validator = eval(validator) //执行自定义JS规则代码
+                  }
+              }
+          }
+      }
+      return rules
     },
   },
   watch: {
