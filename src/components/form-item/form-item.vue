@@ -208,20 +208,27 @@ export default {
         let apiUrl = this.apiUrlSubmit
         let postData = this.fromData
         let message = this.$message
+        let catchFunction
         let thenFunction = function(Response) {
             _this.$store.dispatch('callbackData',Response.data)
         }
         if(stepsName){
           if (steps == 'previous') {
             postData[stepsName] = postData[stepsName]-1
+            catchFunction = function(Response) {
+              postData[stepsName] = postData[stepsName]+1
+            }
             valid = true
           }
           if (steps == 'next' && valid) {
             postData[stepsName] = postData[stepsName]+1
+            catchFunction = function(Response) {
+              postData[stepsName] = postData[stepsName]-1
+            }
           }
         }
         if (valid) {
-          this.$store.dispatch('getData',{ apiUrl, postData, message, thenFunction})
+          this.$store.dispatch('getData',{ apiUrl, postData, message, thenFunction, catchFunction})
         } else {
           console.log('error submit!! 请检查你的提交信息是否符合规则');
           return false
