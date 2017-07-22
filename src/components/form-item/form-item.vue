@@ -83,6 +83,11 @@
         :config="config"
         v-if="config.type == 'radio'"
       />
+      <bve-form-item-link
+        v-model="fromData[config.name]"
+        :config="config"
+        v-if="config.type == 'link'"
+      />
     </template>
     <div class="form-button">
      <el-button

@@ -1,5 +1,5 @@
 <template>
-  <el-form-item :label="config.label" :prop="config.name">
+  <div class="alert">
     <el-alert
       :title="title"
       :type="type"
@@ -7,7 +7,7 @@
       :show-icon="showIcon"
       :closable="closable"
     />
-  </el-form-item>
+  </div>
 </template>
 
 <script>
@@ -51,5 +51,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
+  .alert{
+    margin-bottom: 22px;
+    line-height: 36px;
+  }
 </style>
