@@ -204,22 +204,23 @@ export default {
      */
     submitForm(formName,stepsName,steps) {
       this.$refs[formName].validate((valid) => {
+        let _this  = this
+        let apiUrl = this.apiUrlSubmit
+        let postData = this.fromData
+        let message = this.$message
+        let thenFunction = function(Response) {
+            _this.$store.dispatch('callbackData',Response.data)
+        }
+        if(stepsName){
+          if (steps == 'previous') {
+            postData[stepsName] = postData[stepsName]-1
+            valid = true
+          }
+          if (steps == 'next' && valid) {
+            postData[stepsName] = postData[stepsName]+1
+          }
+        }
         if (valid) {
-          let _this  = this
-          let apiUrl = this.apiUrlSubmit
-          let postData = this.fromData
-          let message = this.$message
-          let thenFunction = function(Response) {
-              _this.$store.dispatch('callbackData',Response.data)
-          }
-          if(stepsName){
-            if (steps == 'previous') {
-              postData[stepsName] = postData[stepsName]-1
-            }
-            if (steps == 'next') {
-              postData[stepsName] = postData[stepsName]+1
-            }
-          }
           this.$store.dispatch('getData',{ apiUrl, postData, message, thenFunction})
         } else {
           console.log('error submit!! 请检查你的提交信息是否符合规则');
