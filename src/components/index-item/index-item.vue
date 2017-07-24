@@ -61,7 +61,7 @@ export default {
       }
       //合并 postData
       Object.assign(postData,this.$store.state.postData)
-      //如果tabIndex为定义删除tabIndex
+      //如果tabIndex未定义删除tabIndex
       if (!this.tabIndex) {
         this.$delete(postData,'tabIndex')
       }
@@ -78,7 +78,7 @@ export default {
     apiUrl: 'initData',
     callbackData:{
       handler: function (val, oldVal) {
-        this.refresh? this.getData(this.currentPostData): this.setData(val)
+        this.refresh? this.getData(): this.setData(val)
 
       },
       deep: true
@@ -93,13 +93,15 @@ export default {
   methods: {
     initData() {
       this.data = null
-      let postData = null
-      this.getData(postData)
+      this.getData()
     },
     /**
      * [getData 获取api通信数据]
      */
     getData(postData) {
+      if (!postData) {
+        postData = this.currentPostData
+      }
       let _this = this
       let apiUrl = this.apiUrl
       let thenFunction = function(Response) {
