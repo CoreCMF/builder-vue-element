@@ -36,28 +36,16 @@ export default {
       }
     },
     onText() {
-      if (!this.config.onText) {
-          return this.onText = '开启';
-      }
-      return this.config.onText
+      return !this.config.onText? '开启': null
     },
     offText() {
-      if (!this.config.offText) {
-          return this.offText = '关闭';
-      }
-      return this.config.offText
+      return !this.config.offText? '关闭': null
     },
     onColor() {
-      if (!this.config.onColor) {
-          return this.onColor = '#1abc9c';
-      }
-      return this.config.onColor
+      return !this.config.onColor? '#1abc9c': null
     },
     offColor() {
-      if (!this.config.offColor) {
-          return this.offColor = '#95a5a6';
-      }
-      return this.config.offColor
+      return !this.config.offColor? '#95a5a6': null
     },
   }
 }
