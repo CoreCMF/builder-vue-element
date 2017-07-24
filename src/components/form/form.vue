@@ -24,12 +24,13 @@ export default {
       tabIndex:{}
   },
   computed: {
-    index() {
-      if (this.tabIndex) {
-        return this.tabIndex.toString()
+    index: {
+      get() {
+          return this.tabIndex? this.tabIndex.toString(): Object.keys(this.data.tabs)[0].toString()
+      },
+      set(newValue) {
       }
-      return Object.keys(this.data.tabs)[0].toString()
-    }
+    },
   },
   methods: {
     handleTabsClick(tab, event) {
