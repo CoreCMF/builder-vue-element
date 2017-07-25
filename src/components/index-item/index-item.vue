@@ -79,7 +79,6 @@ export default {
     callbackData:{
       handler: function (val, oldVal) {
         this.refresh? this.getData(this.currentPostData): this.setData(val)
-
       },
       deep: true
     },
@@ -93,7 +92,7 @@ export default {
   methods: {
     initData() {
       this.data = null
-      this.getData(this.postData)
+      this.getData(this.currentPostData)
     },
     /**
      * [getData 获取api通信数据]
@@ -110,7 +109,6 @@ export default {
       this.$store.dispatch('getData',{ apiUrl, postData, thenFunction, catchFunction}) //获取当前路由数据
     },
     handleTabsClick(tab, event) {
-      this.$store.dispatch('initPostData')
       this.tabIndex = tab.name
     },
     //设置页面data数据

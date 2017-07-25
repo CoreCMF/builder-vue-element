@@ -16,9 +16,15 @@ export default {
       return this.$route.meta.apiUrl
     }
   },
+  created () {
+    this.initPostData()
+  },
   methods: {
     headerSetTitle(title) {
       document.title = title //设置页面标题
+    },
+    initPostData() {
+      this.$store.dispatch('initPostData')
     }
   }
 }
