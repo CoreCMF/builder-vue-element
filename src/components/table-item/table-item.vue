@@ -62,6 +62,11 @@
               v-if="column.type=='icon'"
               v-model="scope.row[column.prop]"
             />
+            <bve-table-item-picture
+              v-if="column.type=='picture'"
+              v-model="scope.row[column.prop]"
+              :config="column.config"
+            />
             <bve-table-item-button
               v-if="column.type=='btn'"
               v-for="(config,key) in rightButton"
