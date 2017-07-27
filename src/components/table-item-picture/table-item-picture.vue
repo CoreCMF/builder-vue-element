@@ -1,23 +1,23 @@
 <template>
-  <div>
-      <template>
-          <img
-          :src="src"
-          :class="config.class"
-          :alt="config.alt"
-          :width="config.width"
-          :height="config.height"
-          @click="pictureDialogVisible = true"
-          style="cursor:pointer"
-          >
-      </template>
-      <el-dialog v-model="pictureDialogVisible">
-          <img
-              :src="src"
-              class="img-responsive img-rounded img-atuo"
-              :alt="config.alt"
-          >
-      </el-dialog>
+  <div class="">
+    <template>
+      <img
+        :src="src"
+        :class="config.class"
+        :alt="config.alt"
+        :width="config.width"
+        :height="config.height"
+        @click="pictureDialogVisible = true"
+        style="cursor:pointer"
+      >
+    </template>
+    <el-dialog v-model="pictureDialogVisible">
+      <img
+        :src="src"
+        class="img-responsive img-rounded img-atuo"
+        :alt="config.alt"
+      >
+    </el-dialog>
   </div>
 </template>
 
@@ -41,10 +41,7 @@ export default {
       return {
           pictureDialogVisible:false,
       };
-  },
-  created() {
-      console.log(this.value,this.config);
-  },
+  }
 }
 </script>
 <style lang="scss" scoped>

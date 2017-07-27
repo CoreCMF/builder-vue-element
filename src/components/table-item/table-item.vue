@@ -67,6 +67,11 @@
               v-model="scope.row[column.prop]"
               :config="column.config"
             />
+            <bve-table-item-tags
+              v-if="column.type=='tags'"
+              v-model="scope.row[column.prop]"
+              :config="column.config"
+            />
             <bve-table-item-button
               v-if="column.type=='btn'"
               v-for="(config,key) in rightButton"

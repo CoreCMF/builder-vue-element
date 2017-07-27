@@ -31,6 +31,7 @@ import TableItemButton from './components/table-item-button'
 import TableItemSearch from './components/table-item-search'
 import TableItemIcon from './components/table-item-icon'
 import TableItemPicture from './components/table-item-picture'
+import TableItemTags from './components/table-item-tags'
 
 import 'element-ui/lib/theme-default/index.css'
 
@@ -68,6 +69,7 @@ const components = [
   TableItemSearch,
   TableItemIcon,
   TableItemPicture,
+  TableItemTags,
 ]
 
 const install = function (Vue, opts = {}) {
