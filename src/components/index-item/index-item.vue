@@ -104,9 +104,7 @@ export default {
         _this.setData(Response.data)
         _this.$emit('set-title', Response.data.title)//设置标题
       }
-      let catchFunction = function(Error){
-      }
-      this.$store.dispatch('getData',{ apiUrl, postData, thenFunction, catchFunction}) //获取当前路由数据
+      this.$store.dispatch('getData',{ apiUrl, postData, thenFunction}) //获取当前路由数据
     },
     handleTabsClick(tab, event) {
       this.tabIndex = tab.name
