@@ -3,8 +3,8 @@
     <el-checkbox-group v-model="currentValue">
       <el-checkbox
         v-for="(option,key,index) in config.options"
-        :label="key"
-        :key="key"
+        :label="key.toString()"
+        :key="key.toString()"
         @change="handleChange"
       >
       {{ option.name }}
@@ -26,6 +26,9 @@ export default {
   computed: {
     currentValue: {
       get() {
+        for (var key in this.value) {
+          this.value[key] = this.value[key].toString()
+        }
         return this.value? this.value: []
       },
       set(newValue) {
