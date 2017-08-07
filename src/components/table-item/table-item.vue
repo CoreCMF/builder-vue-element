@@ -87,7 +87,7 @@
       </template>
     </el-table>
     <div class="table-bottom">
-      <bve-pagination-item v-model="pagination"/>
+      <bve-pagination-item v-if="pagination" v-model="pagination"/>
     </div>
   </div>
 </template>
