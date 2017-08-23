@@ -26,7 +26,8 @@ export default {
   computed: {
     index: {
       get() {
-          return this.tabIndex? this.tabIndex.toString(): Object.keys(this.data.tabs)[0].toString()
+          let defaultTabIndex = this.data.defaultTabs? this.data.defaultTabs: Object.keys(this.data.tabs)[0].toString()
+          return this.tabIndex? this.tabIndex.toString(): defaultTabIndex
       },
       set(newValue) {
       }
