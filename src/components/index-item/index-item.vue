@@ -55,17 +55,7 @@ export default {
       if (this.postData) {
         return this.postData
       }
-      // 设定tabIndex
-      let postData = {
-        tabIndex: this.tabIndex
-      }
-      //合并 postData
-      Object.assign(postData,this.$store.state.postData)
-      //如果tabIndex未定义删除tabIndex
-      if (!this.tabIndex) {
-        this.$delete(postData,'tabIndex')
-      }
-      return postData
+      return this.$store.state.postData
     },
     callbackData() {
       return this.$store.state.callbackData
@@ -108,6 +98,8 @@ export default {
     },
     handleTabsClick(tab, event) {
       this.tabIndex = tab.name
+      this.$store.dispatch('initPostData')
+      this.$store.dispatch('setPostData',{key:'tabIndex', value:tab.name})
     },
     //设置页面data数据
     setData(data){
