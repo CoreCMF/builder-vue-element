@@ -8,7 +8,7 @@
     :label-position="fromConfig.labelPosition"
     :label-suffix="fromConfig.labelSuffix"
     :label-width="fromConfig.labelWidth">
-    <template v-for="config in data.data">
+    <template v-for="config in currentData.data">
       <bve-form-item-text
         v-model="fromData[config.name]"
         :config="config"
@@ -58,6 +58,7 @@
       <bve-form-item-select
         v-model="fromData[config.name]"
         :config="config"
+        @item-change="handleChange"
         v-if="config.type == 'select'"
       />
       <bve-form-item-html
@@ -134,7 +135,7 @@ export default {
   },
   data() {
     return {
-      fromData:{},
+      fromData:null,
       config: {
         labelWidth:'80px',
         inline:false,
@@ -159,15 +160,16 @@ export default {
           hidden: false,
           disabled:false
         },
-      }
+      },
+      currentDatas:null
     };
   },
   computed: {
     apiUrlSubmit() {
-      return this.data.apiUrl.submit
+      return this.currentData.apiUrl.submit
     },
     fromConfig() {
-      Object.assign(this.config,this.data.config)
+      Object.assign(this.config,this.currentData.config)
       return this.config
     },
     rules() {
@@ -184,6 +186,9 @@ export default {
       }
       return rules
     },
+    currentData() {
+       return this.currentDatas? this.currentDatas :this.data
+    }
   },
   watch: {
     data:'initData'
@@ -196,7 +201,7 @@ export default {
      * [setFromData 设置form渲染数据]
      */
     setFromData(){
-      let datas = this.data.data
+      let datas = this.currentData.data
       this.fromData = {}
       for (var key in datas) {
         this.$set(this.fromData, datas[key].name, datas[key].value)
@@ -246,6 +251,9 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
+    /**
+     * 禁用按钮事件
+     */
     handleCheckedEvent(event, checked){
       let disabled = checked? false: true
       for (var key in event) {
@@ -257,7 +265,7 @@ export default {
             this.config.formReset.disabled = disabled
             break;
           default:
-            let data = this.data.data
+            let data = this.currentData.data
             for (var k in data) {
               if (data[k].name == event[key]) {
                 data[k].disabled = disabled
@@ -266,6 +274,25 @@ export default {
         }
       }
     },
+    /**
+     * 组件数据改变事件
+     * 组件存在apiUrl 会访问api
+     * 如果返回form 组件会重新渲染 form组件
+     */
+    handleChange(config, value){
+      if (config.apiUrl) {
+        let _this = this
+        let apiUrl = config.apiUrl
+        let postData = {}
+        postData[config.name] = value
+        let thenFunction = function(Response) {
+          if (Response.data.type == 'form') {
+            _this.currentDatas = Response.data
+          }
+        }
+        this.$store.dispatch('getData',{ apiUrl, postData, thenFunction}) //获取当前路由数据
+      }
+    }
   }
 }
 </script>

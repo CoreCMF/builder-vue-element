@@ -1,6 +1,7 @@
 <template>
   <el-form-item :label="config.label" :prop="config.name">
     <el-select
+      @change="handleChange"
       :placeholder="config.placeholder"
       :multiple="config.multiple"
       :disabled="config.disabled"
@@ -53,6 +54,11 @@ export default {
     },
     options() {
       return this.config.options
+    }
+  },
+  methods: {
+    handleChange() {
+      this.$emit('item-change',this.config, this.currentValue)
     }
   }
 }
