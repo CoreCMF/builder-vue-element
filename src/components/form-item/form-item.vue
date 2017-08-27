@@ -89,6 +89,11 @@
         :config="config"
         v-if="config.type == 'link'"
       />
+      <bve-form-item-tree
+        v-model="fromData[config.name]"
+        :config="config"
+        v-if="config.type == 'tree'"
+      />
     </template>
     <div class="form-button">
      <el-button

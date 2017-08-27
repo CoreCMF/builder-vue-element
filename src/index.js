@@ -22,6 +22,7 @@ import FormItemScrollbar from './components/form-item-scrollbar'
 import FormItemAlert from './components/form-item-alert'
 import FormItemRadio from './components/form-item-radio'
 import FormItemLink from './components/form-item-link'
+import FormItemTree from './components/form-item-tree'
 
 import Table from './components/table'
 import TableItem from './components/table-item'
@@ -60,6 +61,7 @@ const components = [
   FormItemAlert,
   FormItemRadio,
   FormItemLink,
+  FormItemTree,
 
   Table,
   TableItem,
