@@ -1,5 +1,6 @@
 <template>
   <div class="form-item">
+    <div v-html="htmlBegin"></div>
     <el-tabs
       v-if="data.tabs"
       @tab-click="handleTabsClick"
@@ -10,6 +11,7 @@
       </el-tab-pane>
     </el-tabs>
     <bve-form-item :data="data" v-else/>
+    <div v-html="htmlEnd"></div>
   </div>
 </template>
 
@@ -31,6 +33,12 @@ export default {
       set(newValue) {
       }
     },
+    htmlEnd() {
+      return this.data.htmlEnd;
+    },
+    htmlBegin() {
+      return this.data.htmlBegin;
+    }
   },
   methods: {
     handleTabsClick(tab, event) {
