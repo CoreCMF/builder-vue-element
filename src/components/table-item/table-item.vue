@@ -74,11 +74,19 @@
             />
             <bve-table-item-button
               v-if="column.type=='btn'"
+              v-for="(config,key) in scope.row[column.prop]"
+              :key="key"
+              :config="config"
+              v-model="scope.row"
+              size="mini"
+              type="rightButton"
+            />
+            <bve-table-item-button
+              v-if="column.type=='btn'"
               v-for="(config,key) in rightButton"
               :key="key"
               :config="config"
               v-model="scope.row"
-              :multipleSelection="multipleSelection"
               size="mini"
               type="rightButton"
             />
