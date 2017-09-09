@@ -10,16 +10,18 @@
     :key="key"
   >
     <bve-form
+      v-if="item.type == 'form'"
       @tab-click="handleTabsClick"
       :tab-index="tabIndex"
       :data="item"
-      v-if="item.type == 'form'"
+      @postDataChange="handlePostDataChange"
       />
     <bve-table
+      v-if="item.type == 'table'"
       @tab-click="handleTabsClick"
       :tab-index="tabIndex"
       :data="item"
-      v-if="item.type == 'table'"
+      @postDataChange="handlePostDataChange"
       />
   </el-col>
 </el-row>
@@ -31,7 +33,8 @@ export default {
   data() {
     return {
       data: null,
-      tabIndex:null
+      tabIndex:null,
+      childPostData:{}
     }
   },
   props: {
@@ -55,7 +58,7 @@ export default {
       if (this.postData) {
         return this.postData
       }
-      return this.$store.state.postData
+      return this.childPostData
     },
     callbackData() {
       return this.$store.state.callbackData
@@ -66,6 +69,10 @@ export default {
   },
   watch: {
     apiUrl: 'initData',
+    /**
+     * [callbackData 刷新refresh关闭时直接返回数据对象的 对下一步数据进行渲染而 ]
+     * @type {Object}
+     */
     callbackData:{
       handler: function (val, oldVal) {
         this.refresh? this.getData(this.currentPostData): this.setData(val)
@@ -98,12 +105,14 @@ export default {
     },
     handleTabsClick(tab, event) {
       this.tabIndex = tab.name
-      this.$store.dispatch('initPostData')
-      this.$store.dispatch('setPostData',{key:'tabIndex', value:tab.name})
+      this.getData({'tabIndex':tab.name})
     },
     //设置页面data数据
     setData(data){
       this.data = data
+    },
+    handlePostDataChange(key,val) {
+      this.$set(this.childPostData,key,val)
     }
   }
 }

@@ -53,8 +53,8 @@ export default {
        * [handleInputConfirm 根据搜索获取数据]
        */
       handleInputConfirm(){
-        this.$store.dispatch('setPostData',{key:'inputSearch', value:this.inputSearch})
-        this.$store.dispatch('setPostData',{key:'selectSearch', value:this.selectSearch})
+        this.$emit('inputSearchChange',this.inputSearch)
+        this.$emit('selectSearchChange',this.selectSearch)
       }
   }
 }

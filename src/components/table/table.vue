@@ -6,10 +6,18 @@
       v-model="index"
     >
       <el-tab-pane v-for="(tab,key) in data.tabs" :key="key" :name="key.toString()" :label="tab">
-        <bve-item-table v-if="index == key" :data="data"/>
+        <bve-item-table
+          v-if="index == key"
+          :data="data"
+          @postDataChange="handlePostDataChange"
+        />
       </el-tab-pane>
     </el-tabs>
-    <bve-item-table :data="data" v-else/>
+    <bve-item-table
+      v-else
+      :data="data"
+      @postDataChange="handlePostDataChange"
+    />
   </div>
 </template>
 
@@ -36,6 +44,9 @@ export default {
   methods: {
     handleTabsClick(tab, event) {
       this.$emit('tab-click',tab, event)
+    },
+    handlePostDataChange(key,val) {
+      this.$emit('postDataChange',key,val)
     }
   }
 }

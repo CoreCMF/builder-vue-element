@@ -11,7 +11,11 @@
         />
       </el-col>
       <el-col :md="8">
-        <bve-table-item-search :config="search"/>
+        <bve-table-item-search
+          :config="search"
+          @inputSearchChange="handleInputSearchChange"
+          @selectSearchChange="handleSelectSearchChange"
+        />
       </el-col>
     </el-row>
     <el-table
@@ -82,7 +86,6 @@
                 type="rightButton"
               />
               <bve-table-item-button
-                v-if="column.type=='btn'"
                 v-for="(config,key) in rightButton"
                 :key="key"
                 :config="config"
@@ -177,8 +180,14 @@ export default {
     handleCurrentChange(val) {
       this.handlePostData('page',val)
     },
+    handleInputSearchChange(val) {
+      this.handlePostData('inputSearch',val)
+    },
+    handleSelectSearchChange(val) {
+      this.handlePostData('selectSearch',val)
+    },
     handlePostData(key,val) {
-      console.log(key,val);
+      this.$emit('postDataChange',key,val)
     }
   }
 }

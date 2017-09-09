@@ -38,14 +38,12 @@ export default {
     */
     handleSizeChange(val){
       this.$emit('SizeChange',val)
-      this.$store.dispatch('setPostData',{key:'pageSize', value:val})
     },
     /**
     * [handleCurrentChange 根据页码获取页面数据]
     */
     handleCurrentChange(val) {
       this.$emit('CurrentChange',val)
-      this.$store.dispatch('setPostData',{key:'page', value:val})
     },
 	}
 }
