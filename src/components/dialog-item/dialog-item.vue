@@ -7,7 +7,7 @@
   >
     <bve-index-item
       v-if="dialogVisible"
-      :apiUrl="currentApiUrl"
+      :apiUrl="apiUrl"
       :postData="postData"
       @set-title="headerSetTitle"
     />
@@ -46,7 +46,6 @@ export default {
      */
     onVisible() {
       if (this.apiUrl) {
-        this.currentApiUrl = this.apiUrl
         this.dialogVisible = true
       }
     },

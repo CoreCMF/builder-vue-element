@@ -72,30 +72,36 @@
               v-model="scope.row[column.prop]"
               :config="column.config"
             />
-            <bve-table-item-button
-              v-if="column.type=='btn'"
-              v-for="(config,key) in scope.row[column.prop]"
-              :key="key"
-              :config="config"
-              v-model="scope.row"
-              size="mini"
-              type="rightButton"
-            />
-            <bve-table-item-button
-              v-if="column.type=='btn'"
-              v-for="(config,key) in rightButton"
-              :key="key"
-              :config="config"
-              v-model="scope.row"
-              size="mini"
-              type="rightButton"
-            />
+            <template v-if="column.type=='btn'">
+              <bve-table-item-button
+                v-for="(config,key) in scope.row[column.prop]"
+                :key="key"
+                :config="config"
+                v-model="scope.row"
+                size="mini"
+                type="rightButton"
+              />
+              <bve-table-item-button
+                v-if="column.type=='btn'"
+                v-for="(config,key) in rightButton"
+                :key="key"
+                :config="config"
+                v-model="scope.row"
+                size="mini"
+                type="rightButton"
+              />
+            </template>
           </template>
         </el-table-column>
       </template>
     </el-table>
     <div class="table-bottom">
-      <bve-pagination-item v-if="pagination" v-model="pagination"/>
+      <bve-pagination-item
+        v-if="pagination"
+        v-model="pagination"
+        @SizeChange="handleSizeChange"
+        @CurrentChange="handleCurrentChange"
+      />
     </div>
   </div>
 </template>
@@ -158,6 +164,21 @@ export default {
   methods: {
     handleSelectionChange(val) {
       this.multipleSelection = val;
+    },
+    /**
+    * [handleSizeChange 设置每页显示数量并获取数据]
+    */
+    handleSizeChange(val){
+      this.handlePostData('pageSize',val)
+    },
+    /**
+    * [handleCurrentChange 根据页码获取页面数据]
+    */
+    handleCurrentChange(val) {
+      this.handlePostData('page',val)
+    },
+    handlePostData(key,val) {
+      console.log(key,val);
     }
   }
 }
