@@ -20,47 +20,23 @@ export default {
   data() {
     return {
       title: null,
-      dialogVisible: false,
-      currentApiUrl: null
+      dialogVisible: true
     };
   },
-  computed: {
-    apiUrl() {
-      return this.$store.state.dialog.apiUrl
-    },
-    postData() {
-      return this.$store.state.dialog.postData
-    },
-    callbackData() {
-      return this.$store.state.callbackData
-    },
-  },
-  watch: {
-    apiUrl:'onVisible',
-    callbackData: 'thenFunction'
+  props: {
+    apiUrl:{},
+    postData:{}
   },
   methods: {
-    /**
-     * [onVisible dialog开启]
-     * @return {[type]} [传入apiurl 不为空时自动打开]
-     */
-    onVisible() {
-      if (this.apiUrl) {
-        this.dialogVisible = true
-      }
-    },
+
     /**
      * [headerColse 关闭dialog时自动清空 apiurl]
      */
     headerColse() {
-      let apiUrl = null
-      this.$store.dispatch('dialog',{apiUrl})
+      this.$store.dispatch('deleteDialog',this.apiUrl)
     },
     headerSetTitle(title) {
       this.title = title
-    },
-    thenFunction() {
-      this.dialogVisible = false
     }
   }
 }
