@@ -56,7 +56,7 @@ export default {
     },
     currentPostData() {
       if (this.postData) {
-        return this.postData
+        return Object.assign(this.postData, this.childPostData)
       }
       return this.childPostData
     },
