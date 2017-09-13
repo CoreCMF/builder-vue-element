@@ -4,7 +4,11 @@
       :apiUrl="apiUrl"
       @set-title="headerSetTitle"
     />
-    <bve-dialog-item/>
+    <bve-dialog-item
+      v-for="(postData,dialogaApiUrl) in currentDiaolog"
+      :postData="postData"
+      :apiUrl="dialogaApiUrl"
+    />
   </div>
 </template>
 
@@ -12,6 +16,9 @@
 export default {
   name: 'bve-index',
   computed: {
+    currentDiaolog() {
+      return this.$store.state.dialog
+    },
     apiUrl() {
       return this.$route.meta.apiUrl
     }
