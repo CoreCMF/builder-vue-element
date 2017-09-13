@@ -5,7 +5,8 @@
       @set-title="headerSetTitle"
     />
     <bve-dialog-item
-      v-for="(postData,dialogaApiUrl) in currentDiaolog"
+      v-for="(postData,dialogaApiUrl,index) in currentDiaolog"
+      :key="index"
       :postData="postData"
       :apiUrl="dialogaApiUrl"
     />
