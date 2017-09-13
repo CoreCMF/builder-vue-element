@@ -105,7 +105,7 @@ export default {
     },
     handleTabsClick(tab, event) {
       this.tabIndex = tab.name
-      this.getData({'tabIndex':tab.name})
+      this.$set(this.childPostData,'tabIndex',tab.name)
     },
     //设置页面data数据
     setData(data){
