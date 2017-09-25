@@ -15,6 +15,7 @@ import FormItemHidden from './components/form-item-hidden'
 import FormItemPassword from './components/form-item-password'
 import FormItemTags from './components/form-item-tags'
 import FormItemPicture from './components/form-item-picture'
+import FormItemFile from './components/form-item-file'
 import FormItemSelect from './components/form-item-select'
 import FFormItemHtml from './components/form-item-html'
 import FormItemSteps from './components/form-item-steps'
@@ -54,6 +55,7 @@ const components = [
   FormItemPassword,
   FormItemTags,
   FormItemPicture,
+  FormItemFile,
   FormItemSelect,
   FFormItemHtml,
   FormItemSteps,
