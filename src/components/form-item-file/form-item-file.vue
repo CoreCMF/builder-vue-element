@@ -21,7 +21,7 @@
       :auto-upload="true"
     >
         <el-button size="small" type="primary">点击上传</el-button>
-        <div slot="tip" class="el-upload__tip">只能上传{{ showFileType }}文件，且不超过{{ showMaxSize }}</div>
+        <div slot="tip" class="el-upload__tip">只能上传{{ showExtension }}文件，且不超过{{ showMaxSize }}</div>
     </el-upload>
   </el-form-item>
 </template>
@@ -84,9 +84,9 @@ export default {
       }
       return size+show;
     },
-    showFileType()
+    showExtension()
     {
-        return this.config.fileType.join(',')
+        return this.config.extension.join(',')
     }
   },
   methods: {
@@ -100,9 +100,10 @@ export default {
       if (!this.config.maxSizeLang.message) { this.config.maxSizeLang.message = '文件大小超过系统限制' }
       if (!this.config.maxSizeLang.type) { this.config.maxSizeLang.type = 'warning' }
       // 上传文件大小显示语言提示end
-      if (!this.config.fileTypeLang) { this.config.fileTypeLang = {} }
-      if (!this.config.fileTypeLang.message) { this.config.fileTypeLang.message = '文件上传类型不正确' }
-      if (!this.config.fileTypeLang.type) { this.config.fileTypeLang.type = 'warning' }
+      if (!this.config.extensionLang) { this.config.extensionLang = {} }
+      if (!this.config.extensionLang.message) { this.config.extensionLang.message = '文件上传类型不正确' }
+      if (!this.config.extensionLang.type) { this.config.extensionLang.type = 'warning' }
+      this.fileList.push({'name':this.config.fileName})//添加文件名称
     },
     handleRemove(file, fileList) {
         // let name = this.config.name
@@ -136,21 +137,21 @@ export default {
           })
           return false;
       }
-      if (!this.checkFileType(file)) {
+      if (!this.checkExtension(file)) {
           this.$message({
-            message: this.config.fileTypeLang.message,
-            type: this.config.fileTypeLang.type,
+            message: this.config.extensionLang.message,
+            type: this.config.extensionLang.type,
           })
           return false;
       }
     },
     /**
-     * [checkFileType 检查文件类型是否符合要求]
+     * [checkExtension 检查文件类型是否符合要求]
      * @return {[type]} [description]
      */
-    checkFileType(file){
-      let fileType = file.name.substr(file.name.lastIndexOf(".")+1).toLowerCase();//截取字符串
-      return this.config.fileType.includes(fileType)//检查数组包含
+    checkExtension(file){
+      let extension = file.name.substr(file.name.lastIndexOf(".")+1).toLowerCase();//截取字符串
+      return this.config.extension.includes(extension)//检查数组包含
     }
   }
 }
