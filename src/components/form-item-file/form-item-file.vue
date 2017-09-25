@@ -35,7 +35,7 @@
 
 <script>
 export default {
-  name: 'bve-form-item-picture',
+  name: 'bve-form-item-file',
   props: {
     value:{},
     config: {

@@ -55,6 +55,11 @@
         :config="config"
         v-if="config.type == 'picture'"
       />
+      <bve-form-item-file
+        v-model="fromData[config.name]"
+        :config="config"
+        v-if="config.type == 'file'"
+      />
       <bve-form-item-select
         v-model="fromData[config.name]"
         :config="config"
