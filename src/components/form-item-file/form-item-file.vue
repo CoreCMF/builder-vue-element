@@ -8,6 +8,7 @@
       :data="config.data"
       :name="config.fileName"
       :with-credentials="config.withCredentials"
+      :file-list="fileList"
       :show-file-list="config.showFileList"
       :accept="config.accept"
       :on-preview="handlePreview"
@@ -19,16 +20,8 @@
       :before-upload="beforeUpload"
       :auto-upload="true"
     >
-      <div class="upload">
-        <img v-if="imageUrl"
-          :src="imageUrl"
-          :style="stylePicture"
-          class="img-fluid"
-          :width="config.width"
-          :height="config.height"
-        >
-        <i v-else class="el-icon-plus" :style="stylePictureUploaderIcon"></i>
-      </div>
+        <el-button size="small" type="primary">点击上传</el-button>
+        <div slot="tip" class="el-upload__tip">只能上传{{ showFileType }}文件，且不超过{{ showMaxSize }}</div>
     </el-upload>
   </el-form-item>
 </template>
@@ -45,7 +38,7 @@ export default {
   },
   data() {
     return {
-      newImageUrl:'',
+      fileList:[]
     };
   },
   created() {
@@ -60,46 +53,56 @@ export default {
         this.$emit('input', newValue)
       }
     },
-    imageUrl() {
-      if (this.newImageUrl && this.config.value!=this.value) {
-        return this.newImageUrl
-      }
-      return this.config.imageUrl
-    },
-    stylePictureUploaderIcon() {
-      if (this.config.stylePictureUploaderIcon) {
-        return this.config.stylePictureUploaderIcon
-      }
-      return {
-        fontSize: '28px',
-        color: '#8c939d',
-        width: '178px',
-        height: '178px',
-        lineHeight: '178px',
-        textAlign: 'center',
-      }
-    },
-    stylePicture() {
-      return this.config.stylePicture
-    },
     headers() {
       if (window.axios.defaults.headers.common) {
         return window.axios.defaults.headers.common
       }
       return
+    },
+    /**
+     * [showMaxSize 字节计算]
+     * @return {[type]} [description]
+     */
+    showMaxSize(){
+      let size;
+      let show = 'B';
+      if (this.config.maxSize>1024) {
+        size = this.config.maxSize/1024;
+        show = 'KB';
+      }
+      if (size>1024) {
+        size = size/1024;
+        show = 'MB';
+      }
+      if (size>1024) {
+        size = size/1024;
+        show = 'GB';
+      }
+      if (size>1024) {
+        size = size/1024;
+        show = 'TB';
+      }
+      return size+show;
+    },
+    showFileType()
+    {
+        return this.config.fileType.join(',')
     }
   },
   methods: {
     initData() {
       if (!this.config.fileName) { this.config.fileName = 'file' }
       if (!this.config.withCredentials) { this.config.withCredentials = false }
-      if (!this.config.showFileList) { this.config.showFileList = false }
-      if (!this.config.class) { this.config.class = 'picture-uploader' }
+      if (!this.config.showFileList) { this.config.showFileList = true }
+      if (!this.config.class) { this.config.class = 'upload-demo' }
       // 上传文件大小显示语言提示beging
       if (!this.config.maxSizeLang) { this.config.maxSizeLang = {} }
       if (!this.config.maxSizeLang.message) { this.config.maxSizeLang.message = '文件大小超过系统限制' }
       if (!this.config.maxSizeLang.type) { this.config.maxSizeLang.type = 'warning' }
       // 上传文件大小显示语言提示end
+      if (!this.config.fileTypeLang) { this.config.fileTypeLang = {} }
+      if (!this.config.fileTypeLang.message) { this.config.fileTypeLang.message = '文件上传类型不正确' }
+      if (!this.config.fileTypeLang.type) { this.config.fileTypeLang.type = 'warning' }
     },
     handleRemove(file, fileList) {
         // let name = this.config.name
@@ -112,7 +115,6 @@ export default {
         /* [if 上传成功定义显示图片赋值ID]*/
         if (Response.type=="success") {
           this.currentValue = Response.uploadData.id;
-          this.newImageUrl = URL.createObjectURL(file.raw);
         }
         this.$message({
           message: Response.message,
@@ -134,6 +136,21 @@ export default {
           })
           return false;
       }
+      if (!this.checkFileType(file)) {
+          this.$message({
+            message: this.config.fileTypeLang.message,
+            type: this.config.fileTypeLang.type,
+          })
+          return false;
+      }
+    },
+    /**
+     * [checkFileType 检查文件类型是否符合要求]
+     * @return {[type]} [description]
+     */
+    checkFileType(file){
+      let fileType = file.name.substr(file.name.lastIndexOf(".")+1).toLowerCase();//截取字符串
+      return this.config.fileType.includes(fileType)//检查数组包含
     }
   }
 }
