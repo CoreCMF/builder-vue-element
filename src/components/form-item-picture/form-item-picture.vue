@@ -6,7 +6,7 @@
       :headers="headers"
       :multiple="config.multiple"
       :data="config.data"
-      :name="config.fileName"
+      :name="config.inputName"
       :with-credentials="config.withCredentials"
       :show-file-list="config.showFileList"
       :accept="config.accept"
@@ -91,7 +91,7 @@ export default {
   },
   methods: {
     initData() {
-      if (!this.config.fileName) { this.config.fileName = 'file' }
+      if (!this.config.inputName) { this.config.inputName = 'file' }
       if (!this.config.withCredentials) { this.config.withCredentials = false }
       if (!this.config.showFileList) { this.config.showFileList = false }
       if (!this.config.class) { this.config.class = 'picture-uploader' }
