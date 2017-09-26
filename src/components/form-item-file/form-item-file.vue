@@ -127,7 +127,9 @@ export default {
           // console.log(err, response, file);
     },
     handleProgress(event, file, fileList){
-      this.$delete(fileList,0)
+      if (fileList.length>1) {
+        this.$delete(fileList,0)  
+      }
     },
     beforeUpload(file){
       /* [if 判断是否符合上传大小] */
