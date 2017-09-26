@@ -38,13 +38,19 @@ export default {
   },
   data() {
     return {
-      fileList:[]
     };
   },
   created() {
     this.initData();//初始化页面数据
   },
   computed: {
+    fileList() {
+      let fileList = []
+      if (this.config.fileName) {
+        fileList.push({name:this.config.fileName})
+      }
+      return fileList;
+    },
     currentValue: {
       get() {
           return this.value;
@@ -103,7 +109,6 @@ export default {
       if (!this.config.extensionLang) { this.config.extensionLang = {} }
       if (!this.config.extensionLang.message) { this.config.extensionLang.message = '文件上传类型不正确' }
       if (!this.config.extensionLang.type) { this.config.extensionLang.type = 'warning' }
-      if (this.config.fileName) {this.fileList.push({name:this.config.fileName})}//添加文件名称
 
     },
     handleRemove(file, fileList) {
@@ -128,7 +133,7 @@ export default {
     },
     handleProgress(event, file, fileList){
       if (fileList.length>1) {
-        this.$delete(fileList,0)  
+        this.$delete(fileList,0)
       }
     },
     beforeUpload(file){
