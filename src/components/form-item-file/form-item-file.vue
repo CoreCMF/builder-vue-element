@@ -103,7 +103,8 @@ export default {
       if (!this.config.extensionLang) { this.config.extensionLang = {} }
       if (!this.config.extensionLang.message) { this.config.extensionLang.message = '文件上传类型不正确' }
       if (!this.config.extensionLang.type) { this.config.extensionLang.type = 'warning' }
-      this.fileList.push({name:this.config.fileName})//添加文件名称
+      if (this.config.fileName) {this.fileList.push({name:this.config.fileName})}//添加文件名称
+
     },
     handleRemove(file, fileList) {
         // let name = this.config.name
@@ -126,7 +127,7 @@ export default {
           // console.log(err, response, file);
     },
     handleProgress(event, file, fileList){
-      // this.$delete(fileList,0)
+      this.$delete(fileList,0)
     },
     beforeUpload(file){
       /* [if 判断是否符合上传大小] */
