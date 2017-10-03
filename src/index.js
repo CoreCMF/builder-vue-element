@@ -1,8 +1,9 @@
 import Index from './components/index'
 import IndexItem from './components/index-item'
 
-import DialogItem from './components/dialog-item'
-import PaginationItem from './components/pagination-item'
+import QrcodeItem from './components/qrcode-item'//二维码
+import DialogItem from './components/dialog-item'//弹窗
+import PaginationItem from './components/pagination-item'//分页
 
 import Form from './components/form'
 import FormItem from './components/form-item'
@@ -41,6 +42,7 @@ const components = [
   Index,
   IndexItem,
 
+  QrcodeItem,
   DialogItem,
   PaginationItem,
 
