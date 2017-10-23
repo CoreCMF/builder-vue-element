@@ -52,7 +52,7 @@
           :filter-method="column.filterMethod"
           :filtered-value="column.filteredValue"
         >
-          <template scope="scope">
+          <template slot-scope="scope">
             <bve-table-item-scope
               v-if="!column.type"
               v-model="scope.row[column.prop]"
