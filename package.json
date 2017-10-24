@@ -1,6 +1,6 @@
 {
   "name": "builder-vue-element",
-  "version": "1.0.7",
+  "version": "1.0.10",
   "description": "自动构建vue-iview页面\"",
   "main": "./src/index.js",
   "scripts": {
