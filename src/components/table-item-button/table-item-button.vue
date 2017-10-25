@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { forIn } from 'lodash'
 export default {
   name: 'bve-table-item-button',
   props: {
@@ -90,6 +91,9 @@ export default {
     status() {
       return this.value.status
     },
+    groupKey() {
+      return this.value[this.config.groupKey]
+    },
     id() {
       if (this.value) {
         return this.value.id
@@ -166,6 +170,10 @@ export default {
               button = Object.assign(buttonProperty.display,config);
           }
           break;
+        case 'group':
+          config = this.config.group[this.groupKey]
+          button = Object.assign(buttonProperty.default,config);
+        break;
         case 'delete':  // 禁用按钮
           button = Object.assign(buttonProperty.delete,config);
           break;
