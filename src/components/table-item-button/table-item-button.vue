@@ -172,7 +172,9 @@ export default {
           break;
         case 'group':
           config = this.config.group[this.groupKey]
-          button = Object.assign(buttonProperty.default,config);
+          if (config) {
+             button = Object.assign(buttonProperty.default,config);
+          }
         break;
         case 'delete':  // 禁用按钮
           button = Object.assign(buttonProperty.delete,config);
