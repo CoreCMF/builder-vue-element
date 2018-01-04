@@ -78,16 +78,16 @@
             />
             <template v-if="column.type=='btn'">
               <bve-table-item-button
-                v-for="(config,key) in scope.row[column.prop]"
-                :key="key"
+                v-for="config in scope.row[column.prop]"
+                :key="config.apiUrl"
                 :config="config"
                 v-model="scope.row"
                 size="mini"
                 type="rightButton"
               />
               <bve-table-item-button
-                v-for="(config,key) in rightButton"
-                :key="key"
+                v-for="config in rightButton"
+                :key="config.apiUrl"
                 :config="config"
                 v-model="scope.row"
                 size="mini"
