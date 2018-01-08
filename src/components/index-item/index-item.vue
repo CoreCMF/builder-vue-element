@@ -24,6 +24,13 @@
       @postDataChange="handlePostDataChange"
       />
   </el-col>
+  <bve-dialog-item
+    v-if="currentDiaolog"
+    v-for="(postData,dialogaApiUrl,key) in currentDiaolog"
+    :key="dialogaApiUrl"
+    :postData="postData"
+    :apiUrl="dialogaApiUrl"
+  />
 </el-row>
 </template>
 
@@ -62,6 +69,9 @@ export default {
     },
     callbackData() {
       return this.$store.state.callbackData
+    },
+    currentDiaolog() {
+      return _.isEmpty(this.$store.state.dialog)? false: this.$store.state.dialog
     }
   },
   created () {
@@ -99,7 +109,7 @@ export default {
       let apiUrl = this.apiUrl
       let thenFunction = function(Response) {
         _this.setData(Response.data)
-        _this.$emit('set-title', Response.data.title)//设置标题
+        document.title = Response.data.title //设置页面标题
       }
       this.$store.dispatch('getData',{ apiUrl, postData, thenFunction}) //获取当前路由数据
     },
