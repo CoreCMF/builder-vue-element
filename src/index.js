@@ -36,7 +36,11 @@ import TableItemIcon from './components/table-item-icon'
 import TableItemPicture from './components/table-item-picture'
 import TableItemTags from './components/table-item-tags'
 
-import 'element-ui/lib/theme-default/index.css'
+import Vue from 'vue'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+
+Vue.use(ElementUI)
 
 const components = [
   Index,
