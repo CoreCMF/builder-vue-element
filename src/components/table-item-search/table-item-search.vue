@@ -1,6 +1,6 @@
 <template>
   <el-input
-      class="bve-search"
+      class="input-with-select"
       v-if="currentConfig.title"
       v-model="inputSearch"
       :placeholder="currentConfig.title"
@@ -15,7 +15,7 @@
       >
           <el-option v-for="(label, value) in currentConfig.select"  :key="value" :label="label" :value="value"></el-option>
       </el-select>
-      <el-button slot="append" icon="search" @click="handleInputConfirm"></el-button>
+      <el-button slot="append" icon="el-icon-search" @click="handleInputConfirm"></el-button>
   </el-input>
 </template>
 
@@ -60,7 +60,7 @@ export default {
 }
 </script>
 <style lang="scss" >
-  .bve-search{
+  .input-with-select{
     .el-select .el-input {
         width: 1.2in;
      }
