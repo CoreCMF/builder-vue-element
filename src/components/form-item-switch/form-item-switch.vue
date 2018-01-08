@@ -3,12 +3,12 @@
     <el-switch
       :disabled="config.disabled"
       :width="config.width"
-      :on-icon-class="config.onIconClass"
-      :off-icon-class="config.offIconClass"
-      :on-text="onText"
-      :off-text="offText"
-      :on-color="onColor"
-      :off-color="offColor"
+      :active-icon-class="config.activeIconClass"
+      :inactive-icon-class="config.inactiveIconClass"
+      :active-text="config.activeText"
+      :inactive-text="config.inactiveText"
+      :active-color="config.activeColor"
+      :inactive-color="config.inactiveColor"
       :name="config.name"
       v-model="currentValue"
     >
@@ -34,19 +34,7 @@ export default {
       set(newValue) {
         this.$emit('input', newValue)
       }
-    },
-    onText() {
-      return !this.config.onText? '开启': null
-    },
-    offText() {
-      return !this.config.offText? '关闭': null
-    },
-    onColor() {
-      return !this.config.onColor? '#1abc9c': null
-    },
-    offColor() {
-      return !this.config.offColor? '#95a5a6': null
-    },
+    }
   }
 }
 </script>
