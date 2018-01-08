@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-container">
+  <div>
     <bve-index-item
       :apiUrl="apiUrl"
       @set-title="headerSetTitle"
@@ -34,7 +34,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .flex-container{
-    padding: 10px;
-  }
+
 </style>
