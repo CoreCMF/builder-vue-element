@@ -61,6 +61,7 @@
             <bve-table-item-statu
               v-if="column.type=='status'"
               v-model="scope.row[column.prop]"
+              :config="column.config"
             />
             <bve-table-item-icon
               v-if="column.type=='icon'"
