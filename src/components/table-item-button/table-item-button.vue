@@ -1,5 +1,6 @@
 <template>
   <el-button
+    v-if="show"
     :type="button.type"
     :style="buttonStyle"
     :size="size"
@@ -23,76 +24,23 @@ export default {
   },
   data() {
     return {
-      buttonProperty:{
-        add:{
-          title:'新增',
-          icon:'fa fa-plus',
-          type:'primary',
-          method:'default'
-        },
-        default:{
-          title:'无属性按钮',
-          icon:'fa fa-check',
-          type:'success',
-          method:'default'
-        },
-        edit:{
-          title:'编辑',
-          icon:'fa fa-edit',
-          type:'info',
-          method:'default'
-        },
-        resume:{
-          title:'启用',
-          icon:'fa fa-check',
-          type:'success',
-          method:'resume'
-        },
-        forbid:{
-          title:'禁用',
-          icon:'fa fa-ban',
-          type:'warning',
-          method:'forbid'
-        },
-        display:{
-          title:'显示',
-          icon:'fa fa-check',
-          type:'success',
-          method:'display'
-        },
-        hide:{
-          title:'隐藏',
-          icon:'fa fa-eye-slash',
-          type:'warning',
-          method:'hide'
-        },
-        delete:{
-          title:'删除',
-          icon:'fa fa-trash',
-          type:'danger',
-          method:'delete'
-        },
-      }
+        show:true,//控制按钮显示
     };
   },
   computed: {
     button() {
-      let button
       switch(this.type) {
         case 'topButton':
-          button = this.compileTopButton()
           break;
         case 'rightButton':
-          button = this.compileRightButton()
+          this.compileRightButton()
           break;
       }
-      return button
+      return this.config
     },
     status() {
-      return this.value.status
-    },
-    groupKey() {
-      return this.value[this.config.groupKey]
+      //如果后端设定状态column 根据后端设定column读取
+      return this.config.statusKey? this.value[this.config.statusKey]: this.value.status
     },
     id() {
       if (this.value) {
@@ -120,70 +68,28 @@ export default {
   },
   methods: {
     /**
-       * [compileTopButton 编译表格顶部按钮]
-       */
-    compileTopButton(){
-      let button
-      let config = this.config;
-      let buttonProperty = this.buttonProperty;
-      switch(config.buttonType) {
-        case 'add':  // 新增按钮
-          button = Object.assign(buttonProperty.add,config);
-          break;
-        case 'resume':  // 启用按钮
-          button = Object.assign(buttonProperty.resume,config);
-          break;
-        case 'forbid':  // 禁用按钮
-          button = Object.assign(buttonProperty.forbid,config);
-          break;
-        case 'delete':  // 删除按钮
-          button = Object.assign(buttonProperty.delete,config);
-          break;
-        default:
-          button = Object.assign(buttonProperty.default,config);
-          break;
-      }
-      return button
-    },
-    /**
      * [compileRightButton 编译表格右侧按钮]
      */
     compileRightButton(){
-      let button
-      let config = this.config;
-      let buttonProperty = this.buttonProperty;
-      switch(config.buttonType) {
-        case 'edit':  // 编辑按钮
-          button = Object.assign(buttonProperty.edit,config);
-          break;
-        case 'forbid':  //改变记录状态按钮，会更具数据当前的状态自动选择应该显示启用/禁用
-          if(this.status=='1'){
-              button = Object.assign(buttonProperty.forbid,config);
-          }else if(this.status=='0'){
-              button = Object.assign(buttonProperty.resume,config);
-          }
-          break;
-        case 'hide':  //改变记录状态按钮，会更具数据当前的状态自动选择应该显示 显示/因此
-          if(this.status=='1'){
-              button = Object.assign(buttonProperty.hide,config);
-          }else if(this.status=='2'){
-              button = Object.assign(buttonProperty.display,config);
-          }
-          break;
-        case 'group':
-          config = this.config.group[this.groupKey]
-          if (config) {
-             button = Object.assign(buttonProperty.default,config);
-          }
-        break;
-        case 'delete':  // 禁用按钮
-          button = Object.assign(buttonProperty.delete,config);
-          break;
-        default:
-          button = Object.assign(buttonProperty.default,config);
-          break;
-      }
-      return button
+        let _this = this
+        let showStatus = false
+        if (this.config.show) {
+          _.forEach(this.config.show, function(show){
+              if (_this.status == show) {
+                  showStatus = true
+              }
+          })
+          this.show = showStatus
+        }
+        let hideStatus = true
+        if (this.config.hide) {
+          _.forEach(this.config.hide, function(hide){
+              if (_this.status == hide) {
+                  hideStatus = false
+              }
+          })
+          this.show = hideStatus
+        }
     },
     handleClick() {
       let postData

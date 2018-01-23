@@ -12,9 +12,6 @@ export default {
     value:{},
     config:{}
   },
-  created() {
-              console.log(this.config)
-  },
   computed: {
     tags: {
       get() {
