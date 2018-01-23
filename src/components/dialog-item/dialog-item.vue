@@ -1,8 +1,7 @@
 <template>
   <el-dialog
-   size="large"
    :title="title"
-   v-model="dialogVisible"
+   :visible.sync="dialogVisible"
    @close="headerColse"
   >
     <bve-index-item

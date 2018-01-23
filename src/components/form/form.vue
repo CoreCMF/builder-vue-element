@@ -5,6 +5,7 @@
       v-if="data.tabs"
       @tab-click="handleTabsClick"
       v-model="index"
+      type="card"
     >
       <el-tab-pane v-for="(tab,key) in data.tabs" :key="key" :name="key.toString()" :label="tab">
         <bve-form-item  v-if="index == key" :data="data"/>
