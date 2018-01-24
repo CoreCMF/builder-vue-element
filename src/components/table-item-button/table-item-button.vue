@@ -29,13 +29,7 @@ export default {
   },
   computed: {
     button() {
-      switch(this.type) {
-        case 'topButton':
-          break;
-        case 'rightButton':
-          this.compileRightButton()
-          break;
-      }
+      this.isShow()
       return this.config
     },
     status() {
@@ -66,11 +60,14 @@ export default {
       }
     }
   },
+  watch: {
+    value: 'isShow',
+  },
   methods: {
     /**
      * [compileRightButton 编译表格右侧按钮]
      */
-    compileRightButton(){
+    isShow(){
         let _this = this
         let showStatus = false
         if (this.config.show) {
@@ -94,43 +91,46 @@ export default {
     handleClick() {
       let postData
       switch (this.button.method) {
-        case 'default':
-          let apiUrl = this.button.apiUrl
-          postData = {'id':this.id};        //发送数据ID
-          this.$store.dispatch('dialog',{apiUrl, postData})
-          break;
-        case 'resume':
-          postData = this.changeDataState(this.id,1);//批量数据更改状态
-          this.httpNotify(postData)
-          break;
-        case 'forbid':
-          postData = this.changeDataState(this.id,0);//批量数据更改状态
-          this.httpNotify(postData)
-          break;
-        case 'display':
-          postData = this.changeDataState(this.id,1);//批量数据更改状态
-          this.httpNotify(postData)
-          break;
-        case 'hide':
-          postData = this.changeDataState(this.id,2);//批量数据更改状态
-          this.httpNotify(postData)
-          break;
-        case 'delete':
-          postData = this.changeDataState(this.id,-1);//批量数据更改状态
-          this.$confirm('此操作将永久删除此数据, 是否继续?', '危险提示', {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
-            type: 'error'
-          }).then(() => {
-            this.httpNotify(postData)
-          }).catch(() => {
-            this.$message({
-              message: '已取消删除',
-              type: 'info',
-            });
-          });
-          break;
+        // case 'default':
+        //   let apiUrl = this.button.apiUrl
+        //   postData = {'id':this.id};        //发送数据ID
+        //   this.$store.dispatch('dialog',{apiUrl, postData})
+        //   break;
+        // case 'resume':
+        //   postData = this.changeDataState(this.id,1);//批量数据更改状态
+        //   this.httpNotify(postData)
+        //   break;
+        // case 'forbid':
+        //   postData = this.changeDataState(this.id,0);//批量数据更改状态
+        //   this.httpNotify(postData)
+        //   break;
+        // case 'display':
+        //   postData = this.changeDataState(this.id,1);//批量数据更改状态
+        //   this.httpNotify(postData)
+        //   break;
+        // case 'hide':
+        //   postData = this.changeDataState(this.id,2);//批量数据更改状态
+        //   this.httpNotify(postData)
+        //   break;
+        // case 'delete':
+        //   postData = this.changeDataState(this.id,-1);//批量数据更改状态
+        //   this.$confirm('此操作将永久删除此数据, 是否继续?', '危险提示', {
+        //     confirmButtonText: '确定',
+        //     cancelButtonText: '取消',
+        //     type: 'error'
+        //   }).then(() => {
+        //     this.httpNotify(postData)
+        //   }).catch(() => {
+        //     this.$message({
+        //       message: '已取消删除',
+        //       type: 'info',
+        //     });
+        //   });
+        //   break;
         default:
+          postData = this.changeDataState(this.id,this.config.data);//批量数据更改状态
+          this.httpNotify(postData)
+          break;
       }
     },
     httpNotify(postData) {
