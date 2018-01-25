@@ -80,7 +80,7 @@
             <template v-if="column.type=='btn'">
               <bve-table-item-button
                 v-for="(config,index) in scope.row[column.prop]"
-                :key="Math.random()+index"
+                :key="'prop'+index"
                 :config="config"
                 v-model="scope.row"
                 size="mini"
@@ -88,7 +88,7 @@
               />
               <bve-table-item-button
                 v-for="(config,index) in rightButton"
-                :key="Math.random()+index"
+                :key="index"
                 :config="config"
                 v-model="scope.row"
                 size="mini"
