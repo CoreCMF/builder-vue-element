@@ -95,6 +95,7 @@ export default {
           let apiUrl = this.button.apiUrl
           postData = {'id':this.id};        //发送数据ID
           this.$store.dispatch('dialog',{apiUrl, postData})
+          this.$store.dispatch('dialogWidth',this.config.width)
           break;
         case 'warning':
           postData = this.changeDataState(this.id,this.config.data);//批量数据更改状态

@@ -39,6 +39,7 @@ export default {
      */
     headerColse() {
       this.$store.dispatch('deleteDialog',this.apiUrl)
+      this.$store.dispatch('dialogWidth','618px')
     },
     headerSetTitle(title) {
       this.title = title
@@ -46,7 +47,7 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
     .el-dialog{
         max-width: 90%
     }
