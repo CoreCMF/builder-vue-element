@@ -115,7 +115,7 @@ export default {
           if (this.config.data) {
               postData = this.changeDataState(this.id,this.config.data);//批量数据更改状态
           }else{
-              postData = {'id':this.id}; 
+              postData = {'id':this.id};
           }
           this.httpNotify(postData)
           break;

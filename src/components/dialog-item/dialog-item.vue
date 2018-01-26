@@ -2,6 +2,7 @@
   <el-dialog
    :title="title"
    :visible.sync="dialogVisible"
+   :width="width"
    @close="headerColse"
   >
     <bve-index-item
@@ -26,6 +27,11 @@ export default {
     apiUrl:{},
     postData:{}
   },
+  computed: {
+    width() {
+      return this.$store.state.dialogWidth
+    }
+  },
   methods: {
 
     /**
@@ -41,5 +47,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
+    .el-dialog{
+        max-width: 90%
+    }
 </style>
