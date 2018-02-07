@@ -68,11 +68,10 @@ export default {
      * [compileRightButton 编译表格右侧按钮]
      */
     isShow(){
-        let _this = this
         let showStatus = false
         if (this.config.show) {
-          _.forEach(this.config.show, function(show){
-              if (_this.status == show) {
+          _.forEach(this.config.show, (show) => {
+              if (this.status == show) {
                   showStatus = true
               }
           })
@@ -80,8 +79,8 @@ export default {
         }
         let hideStatus = true
         if (this.config.hide) {
-          _.forEach(this.config.hide, function(hide){
-              if (_this.status == hide) {
+          _.forEach(this.config.hide, (hide) => {
+              if (this.status == hide) {
                   hideStatus = false
               }
           })
@@ -123,11 +122,10 @@ export default {
       }
     },
     httpNotify(postData) {
-      let _this  = this
       let apiUrl = this.button.apiUrl
       let message = this.$message
-      let thenFunction = function(Response) {
-        _this.$store.dispatch('callbackData',Response.data)
+      let thenFunction = (Response) => {
+        this.$store.dispatch('callbackData',Response.data)
       }
       this.$store.dispatch('getData',{ apiUrl, postData, message, thenFunction})
     },
