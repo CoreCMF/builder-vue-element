@@ -123,11 +123,10 @@ export default {
     },
     httpNotify(postData) {
       let apiUrl = this.button.apiUrl
-      let message = this.$message
       let thenFunction = (Response) => {
         this.$store.dispatch('callbackData',Response.data)
       }
-      this.$store.dispatch('getData',{ apiUrl, postData, message, thenFunction})
+      this.$store.dispatch('getData',{ apiUrl, postData, thenFunction})
     },
     /**
      * [changeDataState 批量更改数据状态]

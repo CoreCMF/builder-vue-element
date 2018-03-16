@@ -232,7 +232,6 @@ export default {
         let _this  = this
         let apiUrl = this.apiUrlSubmit
         let postData = this.fromData
-        let message = this.$message
         let catchFunction
         let thenFunction = function(Response) {
             _this.$store.dispatch('callbackData',Response.data)
@@ -253,7 +252,7 @@ export default {
           }
         }
         if (valid) {
-          this.$store.dispatch('getData',{ apiUrl, postData, message, thenFunction, catchFunction})
+          this.$store.dispatch('getData',{ apiUrl, postData, thenFunction, catchFunction})
         } else {
           console.log('error submit!! 请检查你的提交信息是否符合规则');
           return false
