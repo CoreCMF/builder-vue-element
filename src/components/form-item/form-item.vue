@@ -229,12 +229,11 @@ export default {
      */
     submitForm(formName,stepsName,steps) {
       this.$refs[formName].validate((valid) => {
-        let _this  = this
         let apiUrl = this.apiUrlSubmit
         let postData = this.fromData
         let catchFunction
-        let thenFunction = function(Response) {
-            _this.$store.dispatch('callbackData',Response.data)
+        let thenFunction = data => {
+            this.$store.dispatch('callbackData', data)
         }
         if(stepsName){
           if (steps == 'previous') {
@@ -295,13 +294,12 @@ export default {
      */
     handleChange(config, value){
       if (config.apiUrl) {
-        let _this = this
         let apiUrl = config.apiUrl
         let postData = {}
         postData[config.name] = value
-        let thenFunction = function(Response) {
+        let thenFunction = data => {
           if (Response.data.type == 'form') {
-            _this.currentDatas = Response.data
+            this.currentDatas = data
           }
         }
         this.$store.dispatch('getData',{ apiUrl, postData, thenFunction}) //获取当前路由数据

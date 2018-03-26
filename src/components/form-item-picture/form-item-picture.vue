@@ -83,10 +83,10 @@ export default {
       return this.config.stylePicture
     },
     headers() {
-      if (window.axios.defaults.headers.common) {
-        return window.axios.defaults.headers.common
+      return {
+        'Accept': 'application/json',
+        'Authorization': localStorage.getItem('token_type') + ' ' + localStorage.getItem('access_token')
       }
-      return
     }
   },
   methods: {

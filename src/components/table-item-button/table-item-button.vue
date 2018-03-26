@@ -123,8 +123,8 @@ export default {
     },
     httpNotify(postData) {
       let apiUrl = this.button.apiUrl
-      let thenFunction = (Response) => {
-        this.$store.dispatch('callbackData',Response.data)
+      let thenFunction = data => {
+        this.$store.dispatch('callbackData',data)
       }
       this.$store.dispatch('getData',{ apiUrl, postData, thenFunction})
     },

@@ -95,11 +95,10 @@ export default {
      * [getData 获取api通信数据]
      */
     getData(postData) {
-      let _this = this
       let apiUrl = this.apiUrl
-      let thenFunction = function(Response) {
-        _this.setData(Response.data)
-        _this.$emit('set-title', Response.data.title)//设置标题
+      let thenFunction = data => {
+        this.setData(data)
+        this.$emit('set-title', data.title)//设置标题
       }
       this.$store.dispatch('getData',{ apiUrl, postData, thenFunction}) //获取当前路由数据
     },
